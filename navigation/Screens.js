@@ -12,6 +12,10 @@ import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
 
+// New login and signup routes
+import LoginScreen from '../screens/LoginPlayer';
+import SignupScreen from '../screens/SignupPlayer';
+
 import CustomDrawerContent from './Menu';
 import { Icon, Header } from '../components';
 import { Images, materialTheme } from "../constants/";
@@ -51,6 +55,9 @@ function ProfileStack(props) {
     </Stack.Navigator>
   );
 }
+// Login
+
+
 
 function SettingsStack(props) {
   return (
@@ -305,6 +312,20 @@ export default function OnboardingStack(props) {
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Signup"
+        component={SignupScreen}
         option={{
           headerTransparent: true
         }}
