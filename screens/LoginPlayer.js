@@ -13,7 +13,7 @@ export default class Login extends React.Component {
 
     return (
         
-        <Block flex style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
         <StatusBar barStyle="light-content" />
         {/* <Block flex center>
           <LinearGradient
@@ -42,8 +42,6 @@ export default class Login extends React.Component {
             
               <Button
                 shadowless
-                
-                size="small"
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 onPress={() => navigation.navigate('App')}>
@@ -59,7 +57,7 @@ export default class Login extends React.Component {
             
           </Block>
           </Block>
-        </Block>
+        </KeyboardAvoidingView>
         
     //   </Block>
     );
@@ -68,6 +66,7 @@ export default class Login extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
+      flex:1,
     backgroundColor: theme.COLORS.BLACK,
   },
   padded: {
