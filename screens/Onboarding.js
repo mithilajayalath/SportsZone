@@ -24,13 +24,10 @@ export default class Onboarding extends React.Component {
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block>
               <Block>
-                <Text color="white" size={60}>Material</Text>
-              </Block>
-              <Block row>
-                <Text color="white" size={60}>Kit</Text>
+                <Text color="white" size={60}>Sports Zone</Text>
               </Block>
               <Text size={16} color='rgba(255,255,255,0.6)'>
-                Fully coded React Native components.
+                Welcome Player!
               </Text>
             </Block>
             <Block center>
