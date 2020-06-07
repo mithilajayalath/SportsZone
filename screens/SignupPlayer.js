@@ -30,10 +30,10 @@ export default class Login extends React.Component {
                 <Text color="white" size={60}>SignUp</Text>
               </Block>
               <Block>
-                <Input placeholder="Mobile Number"  style={styles.input}/>
-                <Input placeholder="Full Name"  style={styles.input}/>
-                <Input placeholder= "Password" password viewPass  style={styles.input}/>
-                <Input placeholder= "Confirm Password" password viewPass  style={styles.input}/>
+                <Input placeholder="Mobile Number"  placeholderTextColor="white" type="number-pad" color="white" style={styles.input}/>
+                <Input placeholder="Name" placeholderTextColor="white" color="white"  style={styles.input}/>
+                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
+                <Input placeholder= "Confirm Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
               </Block>
             
               <Button
@@ -81,5 +81,11 @@ const styles = StyleSheet.create({
     height: theme.SIZES.BASE * 3,
 
   },
-  
+  input: {
+    width: width - theme.SIZES.BASE * 4,
+    height: theme.SIZES.BASE * 3,
+    borderColor:"black",
+    borderBottomColor: "white",
+    backgroundColor:"black"
+  },
 });

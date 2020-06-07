@@ -36,8 +36,8 @@ export default class Login extends React.Component {
                 <Text color="white" size={60}>LOGIN</Text>
               </Block>
               <Block>
-                <Input placeholder="Mobile Number" color="white" bg style={styles.input}/>
-                <Input placeholder= "Password" password viewPass  style={styles.input}/>
+                <Input placeholder="Mobile Number" type="number-pad" placeholderTextColor="white" color="white" style={styles.input}/>
+                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
               </Block>
             
               <Button
@@ -83,8 +83,9 @@ const styles = StyleSheet.create({
   input: {
     width: width - theme.SIZES.BASE * 4,
     height: theme.SIZES.BASE * 3,
-    borderColor:theme.COLORS.BLACK,
-    borderBottomColor: theme.COLORS.Input
+    borderColor:"black",
+    borderBottomColor: "white",
+    backgroundColor:"black"
   },
   
 });
