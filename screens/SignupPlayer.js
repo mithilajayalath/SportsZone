@@ -1,13 +1,74 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
-import { Block, Button, Text, theme, Input } from 'galio-framework';
+import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
+import { Block, Button, Text, theme, Input} from 'galio-framework';
 
 const { height, width } = Dimensions.get('screen');
 
 import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
+import { Value } from 'react-native-reanimated';
 
 export default class Login extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state={
+      mobile_number : "",
+      username : "",
+      password : "",
+      error_mobile_number : "",
+      error_username : "",
+      error_password : "",
+      error_confirm_password : "",
+      error : "",
+      confirm_password : ""
+    }
+  }
+
+
+    empty_mobile_number_validator(){
+      if(this.state.mobile_number==""){
+        this.setState({error_mobile_number:"Please fill mobile number"})
+      }else{
+        this.setState({error_mobile_number:""})
+      }
+    }
+    empty_username_validator(){
+      if(this.state.username==""){
+        this.setState({error_username:"Please fill username"})
+      }else{
+        this.setState({error_username:""})
+      }
+    }
+    empty_password_validator(){
+      if(this.state.password==""){
+        this.setState({error_password:"Please fill password"})
+      }else{
+        this.setState({error_password:""})
+      }
+    }
+    empty_confirm_password_validator(){
+      if(this.state.confirm_password==""){
+        this.setState({error_confirm_password:"Please fill confirm password"})
+      }else{
+        this.setState({error_confirm_password:""})
+      }
+    }
+    password_validator(){
+      if(this.state.password=this.state.confirm_password){
+        this.setState({error:"passwords does not match"})
+      }else{
+        this.setState({error:""})
+      }
+    }
+    
+
+
+    
+
+    
+  
+
   render() {
     const { navigation } = this.props;
 
@@ -30,17 +91,40 @@ export default class Login extends React.Component {
                 <Text color="white" size={60}>SignUp</Text>
               </Block>
               <Block>
-                <Input placeholder="Mobile Number"  placeholderTextColor="white" type="number-pad" color="white" style={styles.input}/>
-                <Input placeholder="Name" placeholderTextColor="white" color="white"  style={styles.input}/>
-                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
-                <Input placeholder= "Confirm Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
+                <Input placeholder="Mobile Number" minLenght={10} maxLength={10}  placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
+                  onChange = {(Value)=> this.setState({mobile_number : Value})}
+                  onBlur = {()=>this.empty_mobile_number_validator()}
+                />
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
+                <Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white"  style={styles.input}
+                  onChange = {(Value)=> this.setState({username : Value})}
+                  onBlur = {()=>this.empty_username_validator()}
+                />
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_username}</Text>
+                <Input placeholder= "Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
+                  onChange = {(Value)=> this.setState({password : Value})}
+                  onBlur = {()=>this.empty_password_validator()}
+                />
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_password}</Text>
+                <Input placeholder= "Confirm Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
+                  onChange = {(Value)=> this.setState({confirm_password : Value})}
+                  onBlur = {()=>this.empty_confirm_password_validator()}
+                  onBlur = {()=>this.password_validator()}
+                />
+                
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_confirm_password}</Text>
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error}</Text>
               </Block>
             
               <Button
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
+                // onPress={() => this.validate_feild()}
                 onPress={() => navigation.navigate('App')}>
+                
+                
+                
                 SignUp
               </Button>
               <Block row>
@@ -50,9 +134,11 @@ export default class Login extends React.Component {
                <Text color="#9C26B0" style={{fontWeight:"bold"}}>Login</Text> 
               </TouchableOpacity>
               </Block>
-            
+              
           </Block>
+          
           </Block>
+          
         </KeyboardAvoidingView>
         
     //   </Block>
