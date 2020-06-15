@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 import { Block, Button, Text, theme, Input } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 const { height, width } = Dimensions.get('screen');
@@ -8,6 +8,33 @@ import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
 import GaButton from '../components/Button';
 export default class Login extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state={
+      mobile_number : "",
+      username : "",
+      password : "",
+      error_mobile_number : "",
+      error_password : ""
+
+    }
+  }
+
+  empty_mobile_number_validator(){
+    if(this.state.mobile_number==""){
+      this.setState({error_mobile_number:"Please fill mobile number"})
+    }else{
+      this.setState({error_mobile_number:""})
+    }
+  }
+  empty_password_validator(){
+    if(this.state.password==""){
+      this.setState({error_password:"Please fill password"})
+    }else{
+      this.setState({error_password:""})
+    }
+  }
   render() {
     const { navigation } = this.props;
 
@@ -36,15 +63,25 @@ export default class Login extends React.Component {
                 <Text color="white" size={60}>LOGIN</Text>
               </Block>
               <Block>
-                <Input placeholder="Mobile Number" type="number-pad" placeholderTextColor="white" color="white" style={styles.input}/>
-                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}/>
+                <Input placeholder="Mobile Number" type="number-pad" placeholderTextColor="white" color="white" style={styles.input}
+                  onChange = {(Value)=> this.setState({mobile_number : Value})}
+                  onBlur = {()=>this.empty_mobile_number_validator()}
+                />
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
+                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}
+                  onChange = {(Value)=> this.setState({password : Value})}
+                  onBlur = {()=>this.empty_password_validator()}
+                />
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.error_password}</Text>
               </Block>
             
               <Button
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
-                onPress={() => navigation.navigate('App')}>
+                
+                onPress={() => navigation.navigate('App')}
+                >
                 Login
               </Button>
               <Block row>
