@@ -1,6 +1,7 @@
 import React from 'react';
 import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 import { Block, Button, Text, theme, Input} from 'galio-framework';
+import firebase from '../Firebase';
 
 const { height, width } = Dimensions.get('screen');
 
@@ -11,7 +12,8 @@ import { Value } from 'react-native-reanimated';
 export default class Login extends React.Component {
 
   constructor(props){
-    super(props)
+    super(props);
+    this.ref = firebase.firestore().collection('player');
     this.state={
       mobile_number : "",
       username : "",
@@ -21,7 +23,8 @@ export default class Login extends React.Component {
       error_password : "",
       error_confirm_password : "",
       error : "",
-      confirm_password : ""
+      confirm_password : "",
+      isLoading: false,
     }
   }
 
@@ -62,13 +65,28 @@ export default class Login extends React.Component {
       }
     }
     
-
-
-  onSignup(){
-    console.log(this.state.mobile_number);
-  }
-
-    
+    saveBoard() {
+      this.setState({
+        isLoading: true,
+      });
+      this.ref.add({
+        mobile_number: this.state.mobile_number,
+        username: this.state.username
+      }).then((docRef) => {
+        this.setState({
+          mobile_number: '',
+          username: '',
+          isLoading: false,
+        });
+        this.props.navigation.goBack();
+      })
+      .catch((error) => {
+        console.error("Error adding document: ", error);
+        this.setState({
+          isLoading: false,
+        });
+      });
+    }
   
 
   render() {
@@ -94,13 +112,11 @@ export default class Login extends React.Component {
               </Block>
               <Block>
                 <Input placeholder="Mobile Number" minLenght={10} maxLength={10}  placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
-                  Value={this.state.mobile_number}
                   onChange = {(Value)=> this.setState({mobile_number : Value})}
                   onBlur = {()=>this.empty_mobile_number_validator()}
                 />
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
                 <Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white"  style={styles.input}
-                  Value={this.state.username}
                   onChange = {(Value)=> this.setState({username : Value})}
                   onBlur = {()=>this.empty_username_validator()}
                 />
@@ -120,23 +136,20 @@ export default class Login extends React.Component {
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error}</Text>
               </Block>
             
-              <Button>
+              <Button
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 // onPress={() => this.validate_feild()}
-                //onPress={() => navigation.navigate('App')}> //keep this
-                onPress={() => this.onSignup()}
-                
-                
-                
+                onPress={() => navigation.navigate('App')}
+              > 
                 SignUp
               </Button>
               <Block row>
               <Text color="white"> Do you already have an account?</Text>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}>
-               <Text color="#9C26B0" style={{fontWeight:"bold"}}>Login</Text> 
+              <Text color="#9C26B0" style={{fontWeight:"bold"}}>Login</Text> 
               </TouchableOpacity>
               </Block>
               
