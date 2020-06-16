@@ -64,7 +64,9 @@ export default class Login extends React.Component {
     
 
 
-    
+  onSignup(){
+    console.log(this.state.mobile_number);
+  }
 
     
   
@@ -92,11 +94,13 @@ export default class Login extends React.Component {
               </Block>
               <Block>
                 <Input placeholder="Mobile Number" minLenght={10} maxLength={10}  placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
+                  Value={this.state.mobile_number}
                   onChange = {(Value)=> this.setState({mobile_number : Value})}
                   onBlur = {()=>this.empty_mobile_number_validator()}
                 />
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
                 <Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white"  style={styles.input}
+                  Value={this.state.username}
                   onChange = {(Value)=> this.setState({username : Value})}
                   onBlur = {()=>this.empty_username_validator()}
                 />
@@ -116,12 +120,13 @@ export default class Login extends React.Component {
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error}</Text>
               </Block>
             
-              <Button
+              <Button>
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 // onPress={() => this.validate_feild()}
-                onPress={() => navigation.navigate('App')}>
+                //onPress={() => navigation.navigate('App')}> //keep this
+                onPress={() => this.onSignup()}
                 
                 
                 
