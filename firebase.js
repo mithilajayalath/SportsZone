@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 
-
 const config = {
     apiKey: "AIzaSyCTLmBkMtK8-w0Opk15JYIE8iEVYIsgY7k",
     authDomain: "sportszone-fd46a.firebaseapp.com",
