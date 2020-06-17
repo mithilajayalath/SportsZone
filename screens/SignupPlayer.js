@@ -3,6 +3,9 @@ import { ImageBackground, StyleSheet, StatusBar, Dimensions, Platform, KeyboardA
 import { Block, Button, Text, theme, Input} from 'galio-framework';
 import firebase from '../firebase';
 
+const playersCollection = firestore().collection('player');
+
+
 const { height, width } = Dimensions.get('screen');
 
 import materialTheme from '../constants/Theme';
@@ -12,7 +15,7 @@ import { Value } from 'react-native-reanimated';
 export default class SignupPlayer extends React.Component {
 
   constructor(){
-    console.log("constructor");
+    //console.log("constructor");
     super();
     //this.ref = firebase.firestore().collection('player');
     this.state={
@@ -80,19 +83,33 @@ export default class SignupPlayer extends React.Component {
         Alert.alert('Enter details to signup!')
       } else {
         console.log("not empty",this.state.username,this.state.password);
+        var user_data={ name: this.state.username,phone:this.state.mobile_number,email:this.state.username, password:this.state.password }//can change name at profile..temporary it's mail address
         this.setState({
-          isLoading: true,
+          //isLoading: true,
         })
         const auth = firebase.auth();
-        console.log("auth ",auth);
-      
+        //console.log("auth ",auth);
         firebase.auth().createUserWithEmailAndPassword(this.state.username, this.state.password).catch(function(error) {
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
-          console.log(errorCode);
+          //console.log(errorCode);
           Alert.alert(errorMessage);
+          if(!errorMessage){//push user_data
+            console.log("in if");
+            try{
+
+              firebase.firestore().collection('volunteers').doc("docname").set("01");
+              
+              alert("Addedd Successfully");
+        
+            }catch(error){
+              alert(error);
+            }
+        
+          }
         });
+      
       }
       console.log("exitting from register user..")
     }
@@ -100,7 +117,7 @@ export default class SignupPlayer extends React.Component {
   
 
   render() {
-    console.log("render");
+    //console.log("render");
     const { navigation } = this.props;
     
     return (
