@@ -22,6 +22,8 @@ import { Images, products, materialTheme } from './constants/';
 import { NavigationContainer } from '@react-navigation/native';
 import Screens from './navigation/Screens';
 
+
+
 //import firebase from 'Firebase.js';
 
 // Before rendering any navigation stack
