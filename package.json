@@ -40,7 +40,7 @@
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
     "cross-env": "~7.0.0",
-    "expo-cli": "~3.11.7",
+    "expo-cli": "^3.21.5",
     "jest-expo": "~36.0.0"
   },
   "bugs": {
