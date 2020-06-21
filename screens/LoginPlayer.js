@@ -7,19 +7,57 @@ const { height, width } = Dimensions.get('screen');
 import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
 import GaButton from '../components/Button';
+//firebase
+import firebase from '../firebase';
+import 'firebase/firestore'
+
 export default class Login extends React.Component {
 
   constructor(props){
-    super(props)
+    super(props);
     this.state={
       mobile_number : "",
+      email : "",
       username : "",
       password : "",
       error_mobile_number : "",
-      error_password : ""
+      error_password : "",
+      errorMessage: null
 
     }
+    this.handleLogin = this.handleLogin.bind(this);
   }
+
+  //testing
+  handleKeywordsChange(e) {
+          console.log(this.state.email);
+          console.log(e.target.value);
+
+          this.setState({
+            email: e.target.value
+          });
+      }
+   updateInputVal = (val, prop) => {
+       console.log(prop+" "+val);
+       const state = this.state;
+       state[prop] = val;
+       this.setState(state);
+   }
+
+
+  //firebase auth
+  handleLogin() {
+  console.log("test1");
+      const { email, password } = this.state;
+      //const email = this.state.mobile_number;
+      //console.log(this.state.email)
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => this.props.navigation.navigate('App'))
+//        .then(() => console.log("success"))
+        .catch(error => this.setState({ errorMessage: error.message }))
+    }
 
   empty_mobile_number_validator(){
     if(this.state.mobile_number==""){
@@ -64,23 +102,30 @@ export default class Login extends React.Component {
               </Block>
               <Block>
                 <Input placeholder="Mobile Number" type="number-pad" placeholderTextColor="white" color="white" style={styles.input}
-                  onChange = {(Value)=> this.setState({mobile_number : Value})}
-                  onBlur = {()=>this.empty_mobile_number_validator()}
+//                  onChange = {(Value)=> this.setState({email : Value})}
+//                    onChange={this.handleKeywordsChange}
+                    onChangeText={(val) => this.updateInputVal(val, 'email')}
+                    value={this.state.email}
+//                  onBlur = {()=>this.empty_mobile_number_validator()}
                 />
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
                 <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}
-                  onChange = {(Value)=> this.setState({password : Value})}
+//                  onChange = {(Value)=> this.setState({password : Value})}
+                     onChangeText={(val) => this.updateInputVal(val, 'password')}
+                     value={this.state.password}
                   onBlur = {()=>this.empty_password_validator()}
                 />
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error_password}</Text>
               </Block>
+                <Text style={{color : 'red',marginLeft:20}}>{this.state.errorMessage}</Text>
             
               <Button
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.BUTTON_COLOR}
                 
-                onPress={() => navigation.navigate('App')}
+//                onPress={() => navigation.navigate('App')}
+                onPress={() => this.handleLogin()}
                 >
                 Login
               </Button>
