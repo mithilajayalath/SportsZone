@@ -10,6 +10,8 @@ import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
+import NewMatchStartScreen from '../screens/NewMatchStartScreen';
+import NewMatchSelectTeam from '../screens/NewMatchSelectTeam';
 import SettingsScreen from '../screens/Settings';
 
 // New login and signup routes
@@ -68,10 +70,30 @@ function SettingsStack(props) {
     >
       <Stack.Screen
         name="Settings"
-        component={SettingsScreen}
+        component={NewMatchStartScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Settings" scene={scene} navigation={navigation} />
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      />
+        {/* <Stack.Screen
+        name="Settings"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      >
+
+      </Stack.Screen> */}
+     <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
           )
         }}
       />

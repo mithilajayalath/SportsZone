@@ -5,8 +5,10 @@ const Products = {
 };
 
 const Profile = 'https://images.unsplash.com/photo-1512529920731-e8abaea917a5?fit=crop&w=840&q=80';
+const Openchallange = 'https://i.pinimg.com/564x/7c/e8/29/7ce8299fde2eb91f87a71dd1673126a2.jpg';
 const Avatar = 'https://images.unsplash.com/photo-1518725522904-4b3939358342?fit=crop&w=210&q=80';
 
+//https://graphicriver.img.customer.envatousercontent.com/files/240147440/preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=15833d5d457bea995d35fd245d1ea32e
 const Viewed = [
   'https://images.unsplash.com/photo-1508264443919-15a31e1d9c1a?fit=crop&w=240&q=80',
   'https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?fit=crop&w=240&q=80',
@@ -18,6 +20,7 @@ const Viewed = [
 
 export default {
   Onboarding,
+  Openchallange,
   Pro,
   Products,
   Profile,
