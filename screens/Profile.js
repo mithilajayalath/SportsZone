@@ -33,7 +33,7 @@ export default class Profile extends React.Component {
               </Block>
               <Block row></Block>
               <Block style={styles.profileTexts}>
-                <Text color="white" size={28} style={{ paddingTop: 25 }}>Rachel Brownnnnn</Text>
+                <Text color="white" size={28} style={{ paddingTop: 25 }}>Rusiri Illesinghe</Text>
                   <Block row >
                   <Block>
                     <Text color={theme.COLORS.MUTED} size={16}>
