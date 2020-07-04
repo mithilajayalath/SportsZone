@@ -317,6 +317,20 @@ export default function OnboardingStack(props) {
         }}
       />
       <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
         name="Login"
         component={LoginScreen}
         option={{
