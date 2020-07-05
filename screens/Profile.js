@@ -13,15 +13,16 @@ const thumbMeasure = (width - 48 - 32) / 3;
 export default class Profile extends React.Component {
   render(){
     return (
-      <Block flex style={styles.profile}>
-        <Block flex>
+      <Block flex style={styles.profile} >
+        <Block flex backgroundColor={materialTheme.COLORS.GRADIENT_START} >
           <ImageBackground
             //source={{uri: Images.Profile}}
+            //backgroundColor='black'
             style={styles.profileContainer}
             imageStyle={styles.profileImage}>
             
-            <Block flex style={styles.profileDetails}>
-              <Block  row middle >
+            <Block flex style={styles.profileDetails} >
+              <Block  row middle  >
                     <Avatar
                       rounded
                       size="xlarge"
@@ -32,8 +33,8 @@ export default class Profile extends React.Component {
                     />
               </Block>
               <Block row></Block>
-              <Block style={styles.profileTexts}>
-                <Text color="white" size={28} style={{ paddingTop: 25 }}>Rusiri Illesinghe</Text>
+              <Block style={styles.profileTexts} >
+                <Text color="white" size={28} style={{ paddingTop: 25 }} >Rusiri Illesinghe</Text>
                   <Block row >
                   <Block>
                     <Text color={theme.COLORS.MUTED} size={16}>
@@ -48,7 +49,7 @@ export default class Profile extends React.Component {
             </Block>
           </ImageBackground>
         </Block>
-        <Block flex style={styles.options}>
+        <Block flex style={styles.options} backgroundColor='black'>
           <Text>User Name</Text>
           <Input
               placeholder="Rusiri Illesinghe"
