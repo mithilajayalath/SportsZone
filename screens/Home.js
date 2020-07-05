@@ -1,73 +1,50 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView,View } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
-
+import { Header,ListItem, PricingCard ,Divider } from 'react-native-elements';
+import { Images, materialTheme } from '../constants';
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
-
+const list = [
+  {
+    name: 'Amy Farha',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+    subtitle: 'Vice President'
+  },
+  {
+    name: 'Chris Jackson',
+    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+    subtitle: 'Vice Chairman'
+  },
+]
 export default class Home extends React.Component {
-  renderSearch = () => {
-    const { navigation } = this.props;
-    const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
-
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        iconContent={iconCamera}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Pro')}
-      />
-    )
-  }
-  
-  renderTabs = () => {
-    const { navigation } = this.props;
-
-    return (
-      <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Categories</Text>
-          </Block>
-        </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Best Deals</Text>
-          </Block>
-        </Button>
-      </Block>
-    )
-  }
-
-  renderProducts = () => {
-    return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-          <Product product={products[0]} horizontal />
-          <Block flex row>
-            <Product product={products[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Product product={products[2]} />
-          </Block>
-          <Product product={products[3]} horizontal />
-          <Product product={products[4]} full />
-        </Block>
-      </ScrollView>
-    )
-  }
-
   render() {
     return (
-      <Block flex center style={styles.home}>
-        {this.renderProducts()}
-      </Block>
+      <Block flex>
+      <Header
+      rightComponent={{ icon: 'menu', color: '#fff' }}
+      centerComponent={{ text: 'SportsZone', style: { color: '#fff',fontSize:30} }}
+      leftComponent={{ icon: 'home', color: '#fff' }}
+      ///backgroundColor= '#3D6DCC'
+      backgroundColor={materialTheme.COLORS.GRADIENT_START}
+      justifyContent= 'space-around'
+    />
+  
+<PricingCard
+  color="red"
+  price="4 new"
+  info={['Negambo : 3','Colombo    :1']}
+  button={{ title: 'UpComming Bookings', icon: 'flight-takeoff' }}
+/>
+<PricingCard
+  color="green"
+  price="10 new"
+  button={{ title: 'Tournaments', icon: 'flight-takeoff' }}
+/>
+
+</Block>
     );
   }
 }
