@@ -1,13 +1,34 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
 
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
+import { SafeAreaView } from 'react-native-safe-area-context';
+const DATA =[
+  {
+    id:123,
+    title: 'Team1',
+  },
+  {
+    id:122,
+    title: 'Team2',
+  },
+  {
+    id:121,
+    title: 'Team3',
+  },
+  {
+    id:124,
+    title: 'Team4',
+  },
+];
 
 export default class Home extends React.Component {
+  
+
   renderSearch = () => {
     const { navigation } = this.props;
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
@@ -47,19 +68,33 @@ export default class Home extends React.Component {
 
   renderProducts = () => {
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-         <Text>Match Requests</Text>
-        </Block>
-      </ScrollView>
+     
+         <FlatList
+              data={DATA}
+              renderItem={({item})=>
+              <View style={styles.list}>
+    
+              <Image source = {require('../assets/images/teamLOGO.png')} style={styles.imageView} />
+            
+              <Text size={20} >{item.title}</Text>
+              <View style={{flex:1, flexDirection: 'column'}}>
+              <Text>05th July 2020</Text>
+              <Text >4.00PM</Text>
+              <Text>Colombo Futsal Club</Text>
+              </View>
+ 
+            </View>
+            }
+            keyExtractor={item => item.id}
+            />
+
+
     )
   }
 
   render() {
     return (
-      <Block flex center style={styles.home}>
+      <Block flex style={styles.home}>
         {this.renderProducts()}
       </Block>
     );
@@ -111,7 +146,24 @@ const styles = StyleSheet.create({
     borderRightColor: theme.COLORS.MUTED,
   },
   products: {
-    width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
+  //  width: width - theme.SIZES.BASE * 2,
+  //  paddingVertical: theme.SIZES.BASE * 2,
+    flex:1,
+    flexDirection:"row",
   },
+  list:{
+    flex:1, 
+    flexDirection: 'row', 
+    justifyContent:"space-evenly",
+    backgroundColor:"#fff",
+    borderRadius:25,
+    paddingVertical:15,
+  },
+  imageView: {
+    width: '25%',
+    height: 70 ,
+    margin: 7,
+    borderRadius : 7,
+},
+
 });

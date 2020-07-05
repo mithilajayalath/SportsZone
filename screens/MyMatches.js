@@ -1,13 +1,45 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
 
 const { width } = Dimensions.get('screen');
-import products from '../constants/products';
+
+const DATA =[
+  {
+    id:123,
+    title: 'Team A',
+    time:"4.00PM",
+    date:"05th July 2020",
+    venue:"Colombo Futsal Club"
+  },
+  {
+    id:122,
+    title: 'Team B',
+    time:"6.30PM",
+    date:"06th July 2020",
+    venue:"Colombo Futsal Club"
+  },
+  {
+    id:121,
+    title: 'Team C',
+    time:"4.00PM",
+    date:"07th July 2020",
+    venue:"Colombo Futsal Club"
+  },
+  {
+    id:124,
+    title: 'Team D',
+    time:"4.00PM",
+    date:"12th July 2020",
+    venue:"Colombo Futsal Club"
+  },
+];
 
 export default class Home extends React.Component {
+  
+
   renderSearch = () => {
     const { navigation } = this.props;
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
@@ -47,19 +79,33 @@ export default class Home extends React.Component {
 
   renderProducts = () => {
     return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-         <Text>My Matches navigation</Text>
-        </Block>
-      </ScrollView>
+     
+         <FlatList
+              data={DATA}
+              renderItem={({item})=>
+              <View style={styles.list}>
+    
+              <Image source = {require('../assets/images/teamLOGO.png')} style={styles.imageView} />
+            
+              <Text size={20} >{item.title}</Text>
+              <View style={{flex:1, flexDirection: 'column', alignItems:"flex-end", paddingRight:20}}>
+              <Text>{item.time}</Text>
+              <Text >{item.date}</Text>
+              <Text>{item.venue}</Text>
+              </View>
+ 
+            </View>
+            }
+            keyExtractor={item => item.id}
+            />
+
+
     )
   }
 
   render() {
     return (
-      <Block flex center style={styles.home}>
+      <Block flex style={styles.home}>
         {this.renderProducts()}
       </Block>
     );
@@ -111,7 +157,24 @@ const styles = StyleSheet.create({
     borderRightColor: theme.COLORS.MUTED,
   },
   products: {
-    width: width - theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
+  //  width: width - theme.SIZES.BASE * 2,
+  //  paddingVertical: theme.SIZES.BASE * 2,
+    flex:1,
+    flexDirection:"row",
   },
+  list:{
+    flex:1, 
+    flexDirection: 'row', 
+    justifyContent:"space-evenly",
+    backgroundColor:"#fff",
+    borderRadius:25,
+    paddingVertical:15,
+  },
+  imageView: {
+    width: '25%',
+    height: 70 ,
+    margin: 7,
+    borderRadius : 7,
+},
+
 });
