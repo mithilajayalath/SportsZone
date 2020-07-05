@@ -9,6 +9,9 @@ import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
+import TeamScreen from '../screens/Team';
+import CreateTeamScreen from '../screens/CreateTeam';
+import ViewTeamScreen from '../screens/ViewTeam';
 import ProScreen from '../screens/Pro';
 import SettingsScreen from '../screens/Settings';
 
@@ -55,6 +58,30 @@ function ProfileStack(props) {
     </Stack.Navigator>
   );
 }
+
+function TeamStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Team" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Team"
+        component={TeamScreen}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              white
+              transparent
+              title="Team"
+              scene={scene}
+              navigation={navigation}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 // Login
 
 
@@ -245,6 +272,20 @@ function AppStack(props) {
         }}
       />
       <Drawer.Screen
+        name="Team"
+        component={TeamStack}
+        options={{
+          drawerIcon: ({ focused }) => (
+            <Icon
+              size={16}
+              name="circle-10"
+              family="GalioExtra"
+              color={focused ? "white" : materialTheme.COLORS.MUTED}
+            />
+          )
+        }}
+      />
+      <Drawer.Screen
         name="Settings"
         component={SettingsStack}
         options={{
@@ -312,6 +353,41 @@ export default function OnboardingStack(props) {
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Team"
+        component={TeamScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="CreateTeam"
+        component={CreateTeamScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="ViewTeam"
+        component={ViewTeamScreen}
         option={{
           headerTransparent: true
         }}

@@ -131,39 +131,39 @@ style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
 <Block row flex space="around" style={{ zIndex:1 }}>
 <Block flex center> 
 <Block>
-<Text color="white" size={60}>SignUp</Text>
+  <Text color="white" size={60}>SignUp</Text>
 </Block>
 <Block>
-<Input placeholder="Mobile Number" minLenght={10} maxLength={10} placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
-//onChange = {(Value)=> this.setState({mobile_number : Value})}
-value={this.state.mobile_number}
-onChangeText={(val) => this.updateInputVal(val, 'mobile_number')}
-onBlur = {()=>this.empty_mobile_number_validator()}
-/>
-<Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
-<Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white" style={styles.input}
-//onChange = {(Value)=> this.setState({username : Value})}
-value={this.state.username}
-onChangeText={(val) => this.updateInputVal(val, 'username')}
-onBlur = {()=>this.empty_username_validator()}
-/>
-<Text style={{color : 'red',marginLeft:20}}>{this.state.error_username}</Text>
-<Input placeholder= "Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
-//onChange = {(Value)=> this.setState({password : Value})}
-value={this.state.password}
-onChangeText={(val) => this.updateInputVal(val, 'password')}
-onBlur = {()=>this.empty_password_validator()}
-/>
-<Text style={{color : 'red',marginLeft:20}}>{this.state.error_password}</Text>
-<Input placeholder= "Confirm Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
-//onChange = {(Value)=> this.setState({confirm_password : Value})}
-value={this.state.confirm_password}
-onChangeText={(val) => this.updateInputVal(val, 'confirm_password')}
-//onBlur = {()=>this.empty_confirm_password_validator()}
-//onBlur = {()=>this.password_validator()}
-/>
-<Text style={{color : 'red',marginLeft:20}}>{this.state.error_confirm_password}</Text>
-<Text style={{color : 'red',marginLeft:20}}>{this.state.error}</Text>
+  <Input placeholder="Mobile Number" minLenght={10} maxLength={10} placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
+    //onChange = {(Value)=> this.setState({mobile_number : Value})}
+    value={this.state.mobile_number}
+    onChangeText={(val) => this.updateInputVal(val, 'mobile_number')}
+    onBlur = {()=>this.empty_mobile_number_validator()}
+  />
+  <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
+  <Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white" style={styles.input}
+    //onChange = {(Value)=> this.setState({username : Value})}
+    value={this.state.username}
+    onChangeText={(val) => this.updateInputVal(val, 'username')}
+    onBlur = {()=>this.empty_username_validator()}
+  />
+  <Text style={{color : 'red',marginLeft:20}}>{this.state.error_username}</Text>
+  <Input placeholder= "Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
+    //onChange = {(Value)=> this.setState({password : Value})}
+    value={this.state.password}
+    onChangeText={(val) => this.updateInputVal(val, 'password')}
+    onBlur = {()=>this.empty_password_validator()}
+  />
+  <Text style={{color : 'red',marginLeft:20}}>{this.state.error_password}</Text>
+  <Input placeholder= "Confirm Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
+    //onChange = {(Value)=> this.setState({confirm_password : Value})}
+    value={this.state.confirm_password}
+    onChangeText={(val) => this.updateInputVal(val, 'confirm_password')}
+    //onBlur = {()=>this.empty_confirm_password_validator()}
+    //onBlur = {()=>this.password_validator()}
+  />
+  <Text style={{color : 'red',marginLeft:20}}>{this.state.error_confirm_password}</Text>
+  <Text style={{color : 'red',marginLeft:20}}>{this.state.error}</Text>
 </Block>
 <Button
 shadowless

@@ -23,7 +23,7 @@ function CustomDrawerContent({
     "Kids",
     "New Collection",
     "Profile",
-    "Settings",
+    "Team",
     "Components"
   ];
   return (
