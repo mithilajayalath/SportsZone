@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image } from 'react-n
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
+import Theme from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 
@@ -11,6 +12,7 @@ const DATA =[
     id:123,
     title: 'Team A',
     time:"4.00PM",
+    logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
     date:"05th July 2020",
     venue:"Colombo Futsal Club"
   },
@@ -18,6 +20,7 @@ const DATA =[
     id:122,
     title: 'Team B',
     time:"6.30PM",
+    logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',
     date:"06th July 2020",
     venue:"Colombo Futsal Club"
   },
@@ -25,6 +28,7 @@ const DATA =[
     id:121,
     title: 'Team C',
     time:"4.00PM",
+    logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
     date:"07th July 2020",
     venue:"Colombo Futsal Club"
   },
@@ -32,6 +36,7 @@ const DATA =[
     id:124,
     title: 'Team D',
     time:"4.00PM",
+    logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
     date:"12th July 2020",
     venue:"Colombo Futsal Club"
   },
@@ -40,67 +45,34 @@ const DATA =[
 export default class Home extends React.Component {
   
 
-  renderSearch = () => {
-    const { navigation } = this.props;
-    const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
-
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        iconContent={iconCamera}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Pro')}
-      />
-    )
-  }
-  
-  renderTabs = () => {
-    const { navigation } = this.props;
-
-    return (
-      <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Categories</Text>
-          </Block>
-        </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Best Deals</Text>
-          </Block>
-        </Button>
-      </Block>
-    )
-  }
-
   renderProducts = () => {
     return (
      
-         <FlatList
-              data={DATA}
-              renderItem={({item})=>
-              <View style={styles.list}>
-    
-              <Image source = {require('../assets/images/teamLOGO.png')} style={styles.imageView} />
-            
-              <Text size={20} >{item.title}</Text>
-              <View style={{flex:1, flexDirection: 'column', alignItems:"flex-end", paddingRight:20}}>
-              <Text>{item.time}</Text>
-              <Text >{item.date}</Text>
-              <Text>{item.venue}</Text>
-              </View>
+      <FlatList
+           data={DATA}
+           renderItem={({item})=>
+           <View style={styles.list}>
  
-            </View>
-            }
-            keyExtractor={item => item.id}
-            />
+           <Image source = {{uri:item.logo}} style={styles.imageView} />
+          <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
+              <Text size={16}>{item.title}</Text>
+          </View>
+           
+           <View style={{flex:4, flexDirection: 'column', alignItems:"flex-end",justifyContent:"center", paddingRight:20}}>
+           <Text>{item.time}</Text>
+           <Text >{item.date}</Text>
+           <Text>{item.venue}</Text>
+           </View>
+           
+
+         </View>
+         }
+         keyExtractor={item => item.id}
+         />
 
 
-    )
+ )
+    
   }
 
   render() {
@@ -167,12 +139,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent:"space-evenly",
     backgroundColor:"#fff",
-    borderRadius:25,
-    paddingVertical:15,
+    //borderRadius:25,
+    borderBottomWidth:10,
+    borderBottomColor:Theme.COLORS.BORDER_COLOR,
+    paddingVertical:10,
   },
   imageView: {
-    width: '25%',
-    height: 70 ,
+    width: width/5,
+    height: width/5 ,
     margin: 7,
     borderRadius : 7,
 },

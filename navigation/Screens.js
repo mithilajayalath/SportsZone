@@ -1,5 +1,5 @@
 import React from 'react';
-import { Easing, Animated, Dimensions } from 'react-native';
+import { Easing, Animated, Dimensions,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -106,6 +106,15 @@ function MyMatchesStack(props) {
         options={{
           header: ({ navigation, scene }) => (
             <Header title="My Matches" scene={scene} navigation={navigation} />
+          ),
+          headerRight: ()=>(
+            <TouchableOpacity>
+             <Icon
+              name='close'
+              family='Galio'
+              size={16}
+            />  
+          </TouchableOpacity>
           )
         }}
       />
