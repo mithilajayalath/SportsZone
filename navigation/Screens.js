@@ -10,6 +10,8 @@ import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
 import ProScreen from '../screens/Pro';
+import NewMatchStartScreen from '../screens/NewMatchStartScreen';
+import NewMatchSelectTeam from '../screens/NewMatchSelectTeam';
 import SettingsScreen from '../screens/Settings';
 import MyMatchesScreen from '../screens/MyMatches';
 import MatchRequestsScreen from '../screens/MatchRequests';
@@ -73,14 +75,96 @@ function SettingsStack(props) {
         name="Settings"
         component={SettingsScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Settings" scene={scene} navigation={navigation} />
+          header: ({ navigation }) => (
+            <Header title="Settings"  navigation={navigation} />
+          )
+        }}
+      />
+        {/* <Stack.Screen
+        name="Settings"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      >
+
+      </Stack.Screen> */}
+     {/* <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      /> */}
+    </Stack.Navigator>
+  );
+}
+
+
+
+
+
+function NewMtachStack(props) {
+  return (
+    <Stack.Navigator
+      initialRouteName="New Match"
+      mode="card"
+      headerMode="screen"
+    >
+      <Stack.Screen
+        name="NewMatchStartScreen"
+        component={NewMatchStartScreen}
+        options={{
+          header: ({ navigation }) => (
+            <Header 
+            title="NewMatch"
+            navigation={navigation}
+            transparent
+            
+             />
+          ),
+          
+          
+        }}
+      />
+        {/* <Stack.Screen
+        name="Settings"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      >
+
+      </Stack.Screen> */}
+     <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
           )
         }}
       />
     </Stack.Navigator>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 function ComponentsStack(props) {
   return (
@@ -283,6 +367,21 @@ function AppStack(props) {
       <Drawer.Screen
         name="Settings"
         component={SettingsStack}
+        options={{
+          drawerIcon: ({ focused }) => (
+            <Icon
+              size={16}
+              name="gears"
+              family="font-awesome"
+              color={focused ? "white" : materialTheme.COLORS.MUTED}
+              style={{ marginRight: -3 }}
+            />
+          )
+        }}
+      />
+       <Drawer.Screen
+        name="New Match"
+        component={NewMtachStack}
         options={{
           drawerIcon: ({ focused }) => (
             <Icon
