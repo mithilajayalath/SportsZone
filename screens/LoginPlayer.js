@@ -101,7 +101,7 @@ export default class Login extends React.Component {
                 <Text color="white" size={60}>LOGIN</Text>
               </Block>
               <Block>
-                <Input placeholder="Mobile Number"  placeholderTextColor="white" color="white" style={styles.input}
+                <Input placeholder="Email Address"  placeholderTextColor="white" color="white" style={styles.input}
 //                  onChange = {(Value)=> this.setState({email : Value})}
 //                    onChange={this.handleKeywordsChange}
                     onChangeText={(val) => this.updateInputVal(val, 'email')}
