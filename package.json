@@ -19,6 +19,7 @@
     "@react-native-firebase/firestore": "^7.1.7",
     "@react-navigation/compat": "~5.0.5",
     "@react-navigation/drawer": "~5.0.5",
+    "@react-navigation/material-top-tabs": "^5.2.12",
     "@react-navigation/native": "~5.0.5",
     "@react-navigation/stack": "~5.0.6",
     "expo": "36.0.0",
@@ -36,6 +37,7 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "~0.7.3",
     "react-native-screens": "~2.0.0-beta.8",
+    "react-native-tab-view": "^2.14.4",
     "yarn": "^1.22.4"
   },
   "devDependencies": {

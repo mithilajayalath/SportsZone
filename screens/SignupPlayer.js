@@ -96,6 +96,7 @@ registerUser = () => {
         console.log("in if");
         return ;
       }
+      
     });
     /*try{
 
@@ -111,7 +112,8 @@ registerUser = () => {
       Alert.alert(error.code);
     }*/
   }
-  console.log("exitting from register user..")
+  console.log("exitting from register user..");
+  
 }
 
 render() {
