@@ -34,7 +34,7 @@ const TeamItem = props => {
                                 style={styles.button}
                                 color={materialTheme.COLORS.BUTTON_COLOR}
 
-                                onPress={() => {}}
+                                onPress={props.onRequest}
                               
                             >Request</Button>
 

@@ -15,16 +15,38 @@ const { width, height } = Dimensions.get('screen');
 const NewMatchSelectTeam = props => {
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
     const teamData = teams;
+   
     const name =props.route.params.teamName;
     const name2 = props.route.params.courtName;
+    const name3 = props.route.params.date;
+    const name4 = props.route.params.time;
+
     console.log("name",name);
     console.log('name2',name2);
-    const renderTeams = itemData => {
+    console.log('name2',name3);
+    console.log('name2',name4);
 
+
+    const sendRequestHandler = () =>{
+        for(const key in teams){
+            console.log('Got the request',name,name2,key);
+        }
+    };
+
+    const sendRequestToOneTeamHandler = (id) =>{
+        const selectedTeam = teams.find(team => team.id === id);
+        console.log('Got the request',id,selectedTeam);
+    }
+    
+
+    const renderTeams = itemData => {
+       
         return (
             <TeamItem
                teamName = {itemData.item.teamName}
-               image = {itemData.item.imageUrl}/>
+               image = {itemData.item.imageUrl}
+               id={itemData.item.id}
+               onRequest={()=>{sendRequestToOneTeamHandler(itemData.item.id)}}/>
         );
     };
     return (
@@ -39,7 +61,7 @@ const NewMatchSelectTeam = props => {
 
                             <Block row space="between">
                                 <Text color="black" size={28} style={{ paddingBottom: 8 }}>OPEN CHALLENGE</Text>
-                                <Mybutton onPress={() => { }} style={styles.button}>
+                                <Mybutton onPress={sendRequestHandler} style={styles.button}>
 
                                 </Mybutton>
                             </Block>

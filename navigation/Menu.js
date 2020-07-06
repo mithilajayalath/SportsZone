@@ -24,7 +24,8 @@ function CustomDrawerContent({
     "New Collection",
     "Profile",
     "Settings",
-    "Components"
+    "Components",
+    "New Match"
   ];
   return (
     <Block
