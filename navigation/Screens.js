@@ -1,8 +1,8 @@
 import React from 'react';
-import { Easing, Animated, Dimensions } from 'react-native';
+import { Easing, Animated, Dimensions,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { Block, Text, theme } from "galio-framework";
 
 import ComponentsScreen from '../screens/Components';
@@ -13,7 +13,9 @@ import ProScreen from '../screens/Pro';
 import NewMatchStartScreen from '../screens/NewMatchStartScreen';
 import NewMatchSelectTeam from '../screens/NewMatchSelectTeam';
 import SettingsScreen from '../screens/Settings';
-
+import MyMatchesScreen from '../screens/MyMatches';
+import MatchRequestsScreen from '../screens/MatchRequests';
+import OpenChallengesScreen from '../screens/OpenChallenge';
 // New login and signup routes
 import LoginScreen from '../screens/LoginPlayer';
 import SignupScreen from '../screens/SignupPlayer';
@@ -26,12 +28,13 @@ const { width } = Dimensions.get("screen");
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const profile = {
   avatar: Images.Profile,
   name: "Rachel Brown",
   type: "Seller",
-  plan: "Pro",
+ // plan: "Free",
   rating: 4.8
 };
 
@@ -116,6 +119,39 @@ function ComponentsStack(props) {
     </Stack.Navigator>
   );
 }
+function MyMatchesStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="My Matches"
+        component={MatchesTab}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header title="My Matches" scene={scene} navigation={navigation} />
+          ),
+          headerRight: ()=>(
+            <TouchableOpacity>
+             <Icon
+              name='close'
+              family='Galio'
+              size={16}
+            />  
+          </TouchableOpacity>
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+function MatchesTab(props) {
+  return (
+    <Tab.Navigator mode="card" headerMode="screen">
+      <Tab.Screen name="Upcoming Matches" component={MyMatchesScreen}/>
+      <Tab.Screen name="Match Requests" component={MatchRequestsScreen}  />
+      <Tab.Screen name="Open Challenges" component={OpenChallengesScreen}  />
+    </Tab.Navigator>
+  );
+}
 
 function HomeStack(props) {
   return (
@@ -195,7 +231,7 @@ function AppStack(props) {
           )
         }}
       />
-      <Drawer.Screen
+      {/* <Drawer.Screen
         name="Woman"
         component={ProScreen}
         options={{
@@ -251,7 +287,7 @@ function AppStack(props) {
             />
           )
         }}
-      />
+      /> */}
       <Drawer.Screen
         name="Profile"
         component={ProfileStack}
@@ -284,6 +320,21 @@ function AppStack(props) {
       <Drawer.Screen
         name="Components"
         component={ComponentsStack}
+        options={{
+          drawerIcon: ({ focused }) => (
+            <Icon
+              size={16}
+              name="md-switch"
+              family="ionicon"
+              color={focused ? "white" : materialTheme.COLORS.MUTED}
+              style={{ marginRight: 2, marginLeft: 2 }}
+            />
+          )
+        }}
+      />
+      <Drawer.Screen
+        name="My Matches"
+        component={MyMatchesStack}
         options={{
           drawerIcon: ({ focused }) => (
             <Icon
@@ -334,6 +385,20 @@ export default function OnboardingStack(props) {
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={HomeScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={ProfileScreen}
         option={{
           headerTransparent: true
         }}
