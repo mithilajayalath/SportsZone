@@ -38,13 +38,23 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "~0.7.3",
     "react-native-screens": "~2.0.0-beta.8",
+<<<<<<< HEAD
     "react-native-tab-view": "^2.14.4",
+=======
+
+>>>>>>> b77b3328f46724d79cc1bb6cdade94413da5f3e9
     "react-redux": "^7.2.0",
     "react-redux-firebase": "^3.6.0",
     "react-router-dom": "^5.2.0",
     "redux": "^4.0.5",
     "redux-firestore": "^0.13.0",
     "redux-thunk": "^2.3.0",
+<<<<<<< HEAD
+=======
+
+    "react-native-tab-view": "^2.14.4",
+
+>>>>>>> b77b3328f46724d79cc1bb6cdade94413da5f3e9
     "yarn": "^1.22.4"
   },
   "devDependencies": {
