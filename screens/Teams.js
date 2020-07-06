@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image,TouchableOpacity } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
+import { AntDesign } from '@expo/vector-icons'; 
 
 import { Icon, Product } from '../components';
 import Theme from '../constants/Theme';
@@ -66,15 +67,24 @@ export default class Home extends React.Component {
   }
 
   render() {
-    
+    const { navigation } = this.props;
     return (
       
       <Block flex style={styles.home}>
-        <View style={{padding:20,flexDirection:"row",backgroundColor:"lightgreen", justifyContent:"center"}}>
+        <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
           <Text style={{fontSize:30, color:"white"}}>Teams</Text>
         </View>
+
+        
         {/* <View style={{padding:20}}></View> */}
         {this.renderProducts()}
+
+        <TouchableOpacity
+                onPress={() => navigation.navigate('CreateTeam')}>
+        <View style={{padding:20,flexDirection:"row", justifyContent:"flex-end"}}>
+          <AntDesign name="pluscircle" size={50} color="#32cd32" />
+        </View>
+        </TouchableOpacity>
         
       </Block>
     );
