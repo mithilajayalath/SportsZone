@@ -9,7 +9,7 @@ import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
-import TeamScreen from '../screens/Team';
+import TeamsScreen from '../screens/Teams';
 import CreateTeamScreen from '../screens/CreateTeam';
 import ViewTeamScreen from '../screens/ViewTeam';
 import ProScreen from '../screens/Pro';
@@ -153,6 +153,32 @@ function HomeStack(props) {
     </Stack.Navigator>
   );
 }
+
+function TeamsStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Teams"
+        component={TeamsTab}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header title="Teams" scene={scene} navigation={navigation} />
+          ),
+          headerRight: ()=>(
+            <TouchableOpacity>
+             <Icon
+              name='close'
+              family='Galio'
+              size={16}
+            />  
+          </TouchableOpacity>
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 
 function AppStack(props) {
   return (
@@ -372,8 +398,8 @@ export default function OnboardingStack(props) {
         }}
       />
       <Stack.Screen
-        name="Team"
-        component={TeamScreen}
+        name="Teams"
+        component={TeamsScreen}
         option={{
           headerTransparent: true
         }}

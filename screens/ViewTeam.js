@@ -33,7 +33,7 @@ export default class Team extends React.Component {
         
             <View style={{padding:20,flexDirection:"row",backgroundColor:"black"}}>
             <TouchableOpacity
-                onPress={() => navigation.navigate('Team')}>
+                onPress={() => navigation.navigate('Teams')}>
             <View style={{flexDirection:"row",backgroundColor:"black"}}>
             <MaterialIcons
                   name="arrow-back"
