@@ -7,6 +7,8 @@ import { Header,ListItem, PricingCard ,Divider } from 'react-native-elements';
 import { Images, materialTheme } from '../constants';
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
+import firebase from '../firebase';
+import 'firebase/firestore';
 const list = [
   {
     name: 'Amy Farha',
@@ -19,7 +21,31 @@ const list = [
     subtitle: 'Vice Chairman'
   },
 ]
+
+
 export default class Home extends React.Component {
+  constructor(props){
+    super(props);
+    this.state=({player:[],newPlayername:'',loading:false});
+    this.ref=firebase.firestore().collection('player');
+    console.log(this.ref.doc());//
+  }
+  
+  componentDidMount(){
+    this.unsubscribe=this.ref.onSnapshot((querySnapshot)=>{
+      const playerData=[];
+      querySnapshot.forEach((doc)=>{ 
+        playerData.push({name:doc.data().name});
+        
+      });
+
+      this.setState({
+        player:playerData,
+        loading:false
+      });
+    });
+  }
+
   render() {
     return (
       <Block flex>
