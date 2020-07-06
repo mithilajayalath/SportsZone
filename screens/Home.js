@@ -9,22 +9,10 @@ const { width } = Dimensions.get('screen');
 import products from '../constants/products';
 import firebase from '../firebase';
 import 'firebase/firestore';
-const list = [
-  {
-    name: 'Amy Farha',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
-    subtitle: 'Vice President'
-  },
-  {
-    name: 'Chris Jackson',
-    avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-    subtitle: 'Vice Chairman'
-  },
-]
 
 
 export default class Home extends React.Component {
-  constructor(props){
+  /*constructor(props){
     super(props);
     this.state=({player:[],newPlayername:'',loading:false});
     this.ref=firebase.firestore().collection('player');
@@ -45,7 +33,7 @@ export default class Home extends React.Component {
       });
     });
   }
-
+*/
   render() {
     return (
       <Block flex>
