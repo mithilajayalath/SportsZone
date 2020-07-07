@@ -31,7 +31,7 @@ export default class Home extends React.Component {
       backgroundColor={materialTheme.COLORS.GRADIENT_START}
       justifyContent= 'space-around'
     />
-  
+  <ScrollView>
 <PricingCard
   color="red"
   price="4 new"
@@ -43,7 +43,7 @@ export default class Home extends React.Component {
   price="10 new"
   button={{ title: 'Tournaments', icon: 'flight-takeoff' }}
 />
-
+</ScrollView>
 </Block>
     );
   }

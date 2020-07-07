@@ -46,17 +46,18 @@ export default class Home extends React.Component {
            <Text >{item.date}</Text>
            <Text>{item.venue}</Text>
            </View>
-           <View style={{flex:1, flexDirection: 'column', justifyContent:"center" }}>
-           <TouchableOpacity>
+           <View style={{flex:2, flexDirection: 'column', justifyContent:"center" }}>
+           <TouchableOpacity style={{alignSelf:"center"}}>
              <Icon
-              name='check'
-              family='FontAwesome5'
+              name='trophy'
+              family='material-community'
               color='green'
+              size={30}
             />  
           </TouchableOpacity>
            
            </View>
-           <View style={{flex:1, flexDirection: 'column', justifyContent:"center" }}>
+           {/* <View style={{flex:1, flexDirection: 'column', justifyContent:"center" }}>
            <TouchableOpacity>
              <Icon
               name='close'
@@ -65,7 +66,7 @@ export default class Home extends React.Component {
             />  
           </TouchableOpacity>
            
-           </View>
+           </View> */}
 
          </View>
          }
