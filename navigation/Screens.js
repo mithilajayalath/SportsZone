@@ -1,7 +1,9 @@
 import React from 'react';
-import { Easing, Animated, Dimensions } from 'react-native';
+import { Easing, Animated, Dimensions,TouchableOpacity } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { Block, Text, theme } from "galio-framework";
 
@@ -13,26 +15,34 @@ import TeamsScreen from '../screens/Teams';
 import CreateTeamScreen from '../screens/CreateTeam';
 import ViewTeamScreen from '../screens/ViewTeam';
 import ProScreen from '../screens/Pro';
+import NewMatchStartScreen from '../screens/NewMatchStartScreen';
+import NewMatchSelectTeam from '../screens/NewMatchSelectTeam';
 import SettingsScreen from '../screens/Settings';
-
+import MyMatchesScreen from '../screens/MyMatches';
+import MatchRequestsScreen from '../screens/MatchRequests';
+import OpenChallengesScreen from '../screens/OpenChallenge';
 // New login and signup routes
 import LoginScreen from '../screens/LoginPlayer';
 import SignupScreen from '../screens/SignupPlayer';
 
+import {Icon} from 'galio-framework'
+
 import CustomDrawerContent from './Menu';
-import { Icon, Header } from '../components';
+import { Header } from '../components';
 import { Images, materialTheme } from "../constants/";
 
 const { width } = Dimensions.get("screen");
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
+const TopTab = createMaterialTopTabNavigator();
+const Tab=createBottomTabNavigator()
 
 const profile = {
   avatar: Images.Profile,
   name: "Rachel Brown",
   type: "Seller",
-  plan: "Pro",
+ // plan: "Free",
   rating: 4.8
 };
 
@@ -42,18 +52,18 @@ function ProfileStack(props) {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              white
-              transparent
-              title="Profile"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-          headerTransparent: true
-        }}
+        // options={{
+        //   header: ({ navigation, scene }) => (
+        //     <Header
+        //       white
+        //       transparent
+        //       title="Profile"
+        //       scene={scene}
+        //       navigation={navigation}
+        //     />
+        //   ),
+        //   headerTransparent: true
+        // }}
       />
     </Stack.Navigator>
   );
@@ -97,14 +107,96 @@ function SettingsStack(props) {
         name="Settings"
         component={SettingsScreen}
         options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Settings" scene={scene} navigation={navigation} />
+          header: ({ navigation }) => (
+            <Header title="Settings"  navigation={navigation} />
+          )
+        }}
+      />
+        {/* <Stack.Screen
+        name="Settings"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      >
+
+      </Stack.Screen> */}
+     {/* <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      /> */}
+    </Stack.Navigator>
+  );
+}
+
+
+
+
+
+function NewMtachStack(props) {
+  return (
+    <Stack.Navigator
+      initialRouteName="New Match"
+      mode="card"
+      headerMode="screen"
+    >
+      <Stack.Screen
+        name="NewMatchStartScreen"
+        component={NewMatchStartScreen}
+        options={{
+          header: ({ navigation }) => (
+            <Header 
+            title="New Match"
+            navigation={navigation}
+             transparent
+            
+             />
+          ),
+          
+          
+        }}
+      />
+        {/* <Stack.Screen
+        name="Settings"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      >
+
+      </Stack.Screen> */}
+     <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="New Match"  navigation={navigation} transparent />
           )
         }}
       />
     </Stack.Navigator>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 function ComponentsStack(props) {
   return (
@@ -121,6 +213,62 @@ function ComponentsStack(props) {
     </Stack.Navigator>
   );
 }
+function MyMatchesStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="My Matches"
+        component={MatchesTab}
+        // options={{
+        //   header: ({ navigation, scene }) => (
+        //     <Header title="My Matches" scene={scene} navigation={navigation} />
+        //   ),
+        //   headerRight: ()=>(
+        //     <TouchableOpacity>
+        //      <Icon
+        //       name='close'
+        //       family='Galio'
+        //       size={16}
+        //     />  
+        //   </TouchableOpacity>
+        //   )
+        // }}
+      />
+      <Stack.Screen
+        name="New Match"
+        component={NewMatchStartScreen}
+        // options={{
+        //   header: ({ navigation }) => (
+        //     <Header 
+        //     title="NewMatch"
+        //     navigation={navigation}
+        //     transparent
+            
+        //      />
+        //   ),
+        // }}
+      />
+      <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+function MatchesTab(props) {
+  return (
+    <TopTab.Navigator mode="card" headerMode="screen" tabBarOptions={{pressColor:"#3BAD36",indicatorStyle:{backgroundColor:"#3BAD36"}}}>
+      <TopTab.Screen name="Upcoming Matches" component={MyMatchesScreen}/>
+      <TopTab.Screen name="Match Requests" component={MatchRequestsScreen}  />
+      <TopTab.Screen name="Open Challenges" component={OpenChallengesScreen}  />
+    </TopTab.Navigator>
+  );
+}
 
 function HomeStack(props) {
   return (
@@ -128,17 +276,15 @@ function HomeStack(props) {
       <Stack.Screen 
         name="Home"
         component={HomeScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header 
-              search
-              tabs
-              title="Home"
-              navigation={navigation}
-              scene={scene}
-            />
-          )
-        }}
+        // options={{
+        //   header: ({ navigation, scene }) => (
+        //     <Header 
+        //       title="Home"
+        //       navigation={navigation}
+        //       scene={scene}
+        //     />
+        //   )
+        // }}
       />
       <Stack.Screen 
         name="Pro"
@@ -182,200 +328,65 @@ function TeamsStack(props) {
 
 function AppStack(props) {
   return (
-    <Drawer.Navigator
-      style={{ flex: 1 }}
-      drawerContent={props => (
-        <CustomDrawerContent {...props} profile={profile} />
-      )}
-      drawerStyle={{
-        backgroundColor: "white",
-        width: width * 0.8
+    <Tab.Navigator
+    initialRouteName="Home"
+      tabBarOptions={{
+        activeTintColor: '#3BAD36',
+       // inactiveTintColor:'#000'
       }}
-      drawerContentOptions={{
-        activeTintColor: "white",
-        inactiveTintColor: "#000",
-        activeBackgroundColor: materialTheme.COLORS.ACTIVE,
-        inactiveBackgroundColor: "transparent",
-        itemStyle: {
-          width: width * 0.74,
-          paddingHorizontal: 12,
-          // paddingVertical: 4,
-          justifyContent: "center",
-          alignContent: "center",
-          // alignItems: 'center',
-          overflow: "hidden"
-        },
-        labelStyle: {
-          fontSize: 18,
-          fontWeight: "normal"
-        }
+      >
+      <Tab.Screen name="Home" component={HomeStack}
+        options={{tabBarLabel: 'Home',
+        tabBarIcon: ({focused}) => <Icon name='ios-home'
+                                family='ionicon'
+                                size={26} 
+                                color={focused ? "#3BAD36" : "#000"}/>,
+        
       }}
-      initialRouteName="Home"
-    >
-      <Drawer.Screen
-        name="Home"
-        component={HomeStack}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="shop"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
+        />
+      <Tab.Screen name="Matches" component ={MyMatchesStack}
+      options={{tabBarLabel: 'Matches',
+      tabBarIcon: ({focused}) => <Icon name='soccer'
+                              family='material-community'
+                              size={26} 
+                              color={focused ? "#3BAD36" : "#000"}/>,
+      
+    }}
       />
-      <Drawer.Screen
-        name="Woman"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-woman"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginLeft: 4, marginRight: 4 }}
-            />
-          )
-        }}
+      <Tab.Screen name="Find Court" component ={MyMatchesStack}
+      options={{tabBarLabel: 'Courts',
+      tabBarIcon: ({focused}) => <Icon name='soccer-field'
+                              family='material-community'
+                              size={26} 
+                              color={focused ? "#3BAD36" : "#000"}/>,
+    }}
       />
-      <Drawer.Screen
-        name="Man"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="man"
-              family="entypo"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
+      <Tab.Screen name="Teams" component ={MyMatchesStack}
+      options={{tabBarLabel: 'Teams',
+      tabBarIcon: ({focused}) => <Icon name='users'
+                              family='font-awesome'
+                              size={26} 
+                              color={focused ? "#3BAD36" : "#000"}/>,
+    }}
       />
-      <Drawer.Screen
-        name="Kids"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="baby"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
+     
+      
+      <Tab.Screen name="Profile" component={ProfileStack}
+       options={{tabBarLabel: 'Profile',
+       tabBarIcon: ({focused}) => <Icon name='user'
+                               family='font-awesome'
+                               size={26} 
+                               color={focused ? "#3BAD36" : "#000"}/>,
+
+     }}
       />
-      <Drawer.Screen
-        name="New Collection"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="grid-on"
-              family="material"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Profile"
-        component={ProfileStack}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="circle-10"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Team"
-        component={TeamStack}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="circle-10"
-              family="GalioExtra"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Settings"
-        component={SettingsStack}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="gears"
-              family="font-awesome"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginRight: -3 }}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Components"
-        component={ComponentsStack}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-switch"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-              style={{ marginRight: 2, marginLeft: 2 }}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Sign In"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="ios-log-in"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
-      />
-      <Drawer.Screen
-        name="Sign Up"
-        component={ProScreen}
-        options={{
-          drawerIcon: ({ focused }) => (
-            <Icon
-              size={16}
-              name="md-person-add"
-              family="ionicon"
-              color={focused ? "white" : materialTheme.COLORS.MUTED}
-            />
-          )
-        }}
-      />
-    </Drawer.Navigator>
+    </Tab.Navigator>
   );
 }
 
 export default function OnboardingStack(props) {
   return (
-    <Stack.Navigator mode="card" headerMode="none">
+    <Stack.Navigator mode="card" headerMode="none" initialRouteName='Login'>
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
@@ -393,27 +404,6 @@ export default function OnboardingStack(props) {
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        option={{
-          headerTransparent: true
-        }}
-      />
-      <Stack.Screen
-        name="Teams"
-        component={TeamsScreen}
-        option={{
-          headerTransparent: true
-        }}
-      />
-      <Stack.Screen
-        name="CreateTeam"
-        component={CreateTeamScreen}
-        option={{
-          headerTransparent: true
-        }}
-      />
-      <Stack.Screen
-        name="ViewTeam"
-        component={ViewTeamScreen}
         option={{
           headerTransparent: true
         }}
