@@ -48,42 +48,57 @@ const profile = {
 };
 
 function ProfileStack(props) {
+  const {navigation} = props;
   return (
     <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header
-        //       white
-        //       transparent
-        //       title="Profile"
-        //       scene={scene}
-        //       navigation={navigation}
-        //     />
-        //   ),
-        //   headerTransparent: true
-        // }}
+        options={{
+          headerTitle:"Profile",
+          headerTitleAlign:"center",
+          headerRight:()=>(
+          <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+          <Icon name="power" family="material-community" size={30} style={{paddingRight:10,}}/>
+          </TouchableOpacity>),
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
     </Stack.Navigator>
   );
 }
 
 function TeamsStack(props) {
+
   return (
     <Stack.Navigator initialRouteName="Team" mode="card" headerMode="screen">
       <Stack.Screen
         name="Team"
         component={TeamScreen}
+        options={{
+          headerTitle:"Teams",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="View Team"
         component={ViewTeamScreen}
+        options={{
+          headerTitle:"Players",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="Create Team"
         component={CreateTeamScreen}
+        options={{
+          headerTitle:"Create New Teams",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+          
+        }}
       />
     </Stack.Navigator>
   );
@@ -205,11 +220,11 @@ function CourtsStack(props) {
       <Stack.Screen
         name="Courts"
         component={CourtsScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header title="Components" scene={scene} navigation={navigation} />
-        //   )
-        // }}
+        options={{
+          headerTitle:"Courts",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
     </Stack.Navigator>
   );
@@ -227,30 +242,26 @@ function MatchesStack(props) {
         component={MatchesTab}
         options={{
           headerTitle:"My Matches",
-          headerTitleAlign:"center"
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
         }}
       />
       <Stack.Screen
         name="New Match"
         component={NewMatchStartScreen}
-        // options={{
-        //   header: ({ navigation }) => (
-        //     <Header 
-        //     title="NewMatch"
-        //     navigation={navigation}
-        //     transparent
-            
-        //      />
-        //   ),
-        // }}
+        options={{
+          headerTitle:"New Match",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="NewMatchSelectTeam"
         component={NewMatchSelectTeam}
         options={{
-          header: ({ navigation }) => (
-            <Header back title="NewMatch"  navigation={navigation} />
-          )
+          headerTitle:"Select team",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
         }}
       />
     </Stack.Navigator>
@@ -281,15 +292,11 @@ function HomeStack(props) {
       <Stack.Screen 
         name="Home"
         component={HomeScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header 
-        //       title="Home"
-        //       navigation={navigation}
-        //       scene={scene}
-        //     />
-        //   )
-        // }}
+        options={{
+          headerTitle:"Home",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen 
         name="Pro"
