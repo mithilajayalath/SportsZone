@@ -243,6 +243,15 @@ function MatchesTab(props) {
   );
 }
 
+function OpenchallengesTab(props) {
+  return (
+    <TopTab.Navigator mode="card" headerMode="screen" tabBarOptions={{pressColor:"#3BAD36",indicatorStyle:{backgroundColor:"#3BAD36"}}}>
+      <TopTab.Screen name="Open Challenges" component={OpenChallengesScreen}  />
+      <TopTab.Screen name="Upcoming Matches" component={MyMatchesScreen}/>
+      <TopTab.Screen name="Match Requests" component={MatchRequestsScreen}  />
+    </TopTab.Navigator>
+  );
+}
 function HomeStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
@@ -272,7 +281,10 @@ function HomeStack(props) {
       <Stack.Screen 
         name="MyMatches"
         component={MatchesTab}
-    
+      />
+      <Stack.Screen 
+        name="OpenChallenges"
+        component={OpenchallengesTab}
       />
     </Stack.Navigator>
   );
