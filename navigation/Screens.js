@@ -11,7 +11,7 @@ import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
-import TeamsScreen from '../screens/Teams';
+import TeamScreen from '../screens/Teams';
 import CreateTeamScreen from '../screens/CreateTeam';
 import ViewTeamScreen from '../screens/ViewTeam';
 import ProScreen from '../screens/Pro';
@@ -75,18 +75,26 @@ function TeamStack(props) {
       <Stack.Screen
         name="Team"
         component={TeamScreen}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header
-              white
-              transparent
-              title="Team"
-              scene={scene}
-              navigation={navigation}
-            />
-          ),
-          headerTransparent: true
-        }}
+        // options={{
+        //   header: ({ navigation, scene }) => (
+        //     <Header
+        //       white
+        //       transparent
+        //       title="Team"
+        //       scene={scene}
+        //       navigation={navigation}
+        //     />
+        //   ),
+        //   headerTransparent: false
+        // }}
+      />
+      <Stack.Screen
+        name="View Team"
+        component={ViewTeamScreen}
+      />
+      <Stack.Screen
+        name="Create Team"
+        component={CreateTeamScreen}
       />
     </Stack.Navigator>
   );
@@ -213,7 +221,7 @@ function ComponentsStack(props) {
     </Stack.Navigator>
   );
 }
-function MyMatchesStack(props) {
+function MatchesStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
@@ -349,7 +357,7 @@ function AppStack(props) {
         
       }}
         />
-      <Tab.Screen name="Matches" component ={MyMatchesStack}
+      <Tab.Screen name="Matches" component ={MatchesStack}
       options={{tabBarLabel: 'Matches',
       tabBarIcon: ({focused}) => <Icon name='soccer'
                               family='material-community'
@@ -358,7 +366,7 @@ function AppStack(props) {
       
     }}
       />
-      <Tab.Screen name="Find Court" component ={MyMatchesStack}
+      <Tab.Screen name="Find Court" component ={MatchesStack}
       options={{tabBarLabel: 'Courts',
       tabBarIcon: ({focused}) => <Icon name='soccer-field'
                               family='material-community'
@@ -366,7 +374,7 @@ function AppStack(props) {
                               color={focused ? "#3BAD36" : "#000"}/>,
     }}
       />
-      <Tab.Screen name="Teams" component ={MyMatchesStack}
+      <Tab.Screen name="Teams" component ={TeamStack}
       options={{tabBarLabel: 'Teams',
       tabBarIcon: ({focused}) => <Icon name='users'
                               family='font-awesome'
@@ -391,7 +399,7 @@ function AppStack(props) {
 
 export default function OnboardingStack(props) {
   return (
-    <Stack.Navigator mode="card" headerMode="none" initialRouteName='Login'>
+    <Stack.Navigator mode="card" headerMode="none" initialRouteName='App'>
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
