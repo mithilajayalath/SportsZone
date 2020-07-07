@@ -81,7 +81,7 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={()=>navigation.navigate('CreateTeam')}
+          onPress={()=>navigation.navigate('Create Team')}
           style={styles.TouchableOpacityStyle}>
           <Icon name="plus-circle" family="material-community" size={55}
           color="#3BAD36" backgroundColor="#fff"

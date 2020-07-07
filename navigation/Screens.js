@@ -70,7 +70,7 @@ function ProfileStack(props) {
   );
 }
 
-function TeamStack(props) {
+function TeamsStack(props) {
   return (
     <Stack.Navigator initialRouteName="Team" mode="card" headerMode="screen">
       <Stack.Screen
@@ -313,30 +313,6 @@ function HomeStack(props) {
   );
 }
 
-function TeamsStack(props) {
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Teams"
-        component={TeamsTab}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Teams" scene={scene} navigation={navigation} />
-          ),
-          headerRight: ()=>(
-            <TouchableOpacity>
-             <Icon
-              name='close'
-              family='Galio'
-              size={16}
-            />  
-          </TouchableOpacity>
-          )
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 
 function AppStack(props) {
@@ -374,7 +350,7 @@ function AppStack(props) {
                               color={focused ? "#3BAD36" : "#000"}/>,
     }}
       />
-      <Tab.Screen name="Teams" component ={TeamStack}
+      <Tab.Screen name="Teams" component ={TeamsStack}
       options={{tabBarLabel: 'Teams',
       tabBarIcon: ({focused}) => <Icon name='users'
                               family='font-awesome'
