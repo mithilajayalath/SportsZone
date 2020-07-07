@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get('screen');
 // const INPUT_CHANGE = 'INPUT_CHANGE';
 // const INPUT_BLUR = 'INPUT_BLUR';
 const FORM_INPUT_UPDATE = 'FORM_INPUT_UPDATE';
-
+const RESET_FORM = 'RESET_FORM';
 // const inputReducer = (state, action) => {
 //     switch (action.type) {
 //         case INPUT_CHANGE:
@@ -53,6 +53,23 @@ const formReducer = (state, action) => {
             inputValidations: updatedValidations
         }
     }
+    if(action.type === RESET_FORM){
+        return {
+            inputValues: {
+                teamName: '',
+                courtName: '',
+                date: '',
+                time: ''
+            },
+            inputValidations: {
+                teamName: false,
+                courtName: false,
+                date: false,
+                time: false
+            },
+            isFormValid: false
+        };
+    }
     return state;//if action.type is not update, then return unchanged state
 };
 
@@ -76,7 +93,8 @@ const NewMatchStartScreen = props => {
     //  const lostFocusHandler = () =>{
     //     dispatchInputState({type: INPUT_BLUR});
     // };
-    const [formState, dispatchFormState] = useReducer(formReducer, {// use except mant useStates
+    
+    const [formState, dispatchFormState] = useReducer(formReducer,{
         inputValues: {
             teamName: '',
             courtName: '',
@@ -110,11 +128,18 @@ const NewMatchStartScreen = props => {
             Alert.alert('Wrong input', 'Please check errors in the form!', [{ text: 'okay' }]);
             return;
         }
+        const team_name = formState.inputValues.teamName
+        const court_name=formState.inputValues.courtName
+        const date = formState.inputValues.date
+        const time = formState.inputValues.time
+        
+       // dispatchFormState({type: RESET_FORM});
+      // dispatchFormState({type: FORM_INPUT_UPDATE, value:initialValue,isValid:initiallyValid,input})
         props.navigation.navigate('NewMatchSelectTeam', {
-            teamName: formState.inputValues.teamName,
-            courtName: formState.inputValues.courtName,
-            date: formState.inputValues.date,
-            time: formState.inputValues.time
+            teamName: team_name,
+            courtName: court_name,
+            date: date,
+            time: time
         });
         //  else {
         //      await  dispatch(productsActions.createProduct(
@@ -175,9 +200,10 @@ const NewMatchStartScreen = props => {
     const handleConfirmDate = (date) => {
         //console.warn("A date has been picked: ", date);
         // setDate(date.toISOString());
+        setDatePickerVisibility(false);
         setDate(moment(date).format("MMM Do YY"));
         // inputChangeHandler('date',date,true);
-        setDatePickerVisibility(false);
+        
     };
 
     const showTimePicker = () => {
@@ -190,9 +216,10 @@ const NewMatchStartScreen = props => {
     const handleConfirmTime = (time) => {
        // console.warn("A date has been picked: ", time);
       // setDate(moment(time).format("MMM Do YY"));
+      hideTimePicker();
        setTime(moment(time).add(3, 'days').calendar()); 
       //setTime(moment(time).format('LT'));
-        hideTimePicker();
+      
     };
 
 
@@ -240,6 +267,7 @@ const NewMatchStartScreen = props => {
                         inputValue={date}
                         initiallyValid={false}
                         required
+                        disabled
                     />
                     <DateTimePickerModal
                         isVisible={isDatePickerVisible}
