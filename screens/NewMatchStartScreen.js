@@ -274,6 +274,7 @@ const NewMatchStartScreen = props => {
                         mode="date"
                         onConfirm={handleConfirmDate}
                         onCancel={hideDatePicker}
+                       // style={styles.datepicker}
 
                     />
 
@@ -304,7 +305,7 @@ const NewMatchStartScreen = props => {
                     <Button
                         shadowless
                         style={styles.button}
-                        color='lightgreen'
+                        color={materialTheme.COLORS.SUCCESS}
                         round
                         textStyle ={styles.buttonText}
                         // onPress={() => {props.navigation.navigate('NewMatchSelectTeam',{
@@ -344,6 +345,7 @@ const styles = StyleSheet.create({
     },
     buttonText:{
         color:'black'
-    }
+    },
+  
 });
 export default NewMatchStartScreen;
