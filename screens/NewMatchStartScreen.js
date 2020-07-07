@@ -107,7 +107,7 @@ const NewMatchStartScreen = props => {
         console.log('valid', formState)
         if (!formState.isFormValid) {
 
-            Alert.alert('Wrong input', 'Pleasecheck errors in the form', [{ text: 'okay' }]);
+            Alert.alert('Wrong input', 'Please check errors in the form!', [{ text: 'okay' }]);
             return;
         }
         props.navigation.navigate('NewMatchSelectTeam', {
@@ -206,6 +206,7 @@ const NewMatchStartScreen = props => {
                         id='teamName'
                         label='Team name:'
                         placeholder='Team name'
+                        placeholderTextcolor = 'gray'
                         errorText='Please enter a valid Team name'
                         keyboardType='default'
                         autoCapitalize='sentences'
@@ -275,8 +276,9 @@ const NewMatchStartScreen = props => {
                     <Button
                         shadowless
                         style={styles.button}
-                        color={materialTheme.COLORS.BUTTON_COLOR}
-
+                        color='lightgreen'
+                        round
+                        textStyle ={styles.buttonText}
                         // onPress={() => {props.navigation.navigate('NewMatchSelectTeam',{
                         //     teamName:teamName,
                         //     courtName:'hasali'
@@ -294,7 +296,7 @@ const NewMatchStartScreen = props => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: materialTheme.COLORS.DEFAULT
+        backgroundColor: theme.COLORS.WHITE
     },
     form: {
         flex: 1,
@@ -311,6 +313,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginLeft: theme.SIZES.BASE * 12
+    },
+    buttonText:{
+        color:'black'
     }
 });
 export default NewMatchStartScreen;

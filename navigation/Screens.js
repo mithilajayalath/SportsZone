@@ -126,9 +126,9 @@ function NewMtachStack(props) {
         options={{
           header: ({ navigation }) => (
             <Header 
-            title="NewMatch"
+            title="New Match"
             navigation={navigation}
-            transparent
+             transparent
             
              />
           ),
@@ -152,7 +152,7 @@ function NewMtachStack(props) {
         component={NewMatchSelectTeam}
         options={{
           header: ({ navigation }) => (
-            <Header back title="NewMatch"  navigation={navigation} />
+            <Header back title="New Match"  navigation={navigation} transparent />
           )
         }}
       />
@@ -333,7 +333,7 @@ function AppStack(props) {
 
 export default function OnboardingStack(props) {
   return (
-    <Stack.Navigator mode="card" headerMode="none">
+    <Stack.Navigator mode="card" headerMode="none" initialRouteName='Login'>
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}

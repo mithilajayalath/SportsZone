@@ -1,10 +1,11 @@
-import React from 'react';
+import React ,{useState}from 'react';
 import { StatusBar, StyleSheet, ImageBackground, Dimensions, FlatList } from 'react-native';
 import { Block, Text, theme, Button, Input } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 import GuButton from '../components/Button';
 import { Images, materialTheme } from '../constants';
 import Icon from '../components/Icon';
+//import firestore from '@react-native-firebase/firestore';
 
 import Mybutton from '../components/MyButton';
 import TeamItem from '../components/TeamItem';
@@ -13,29 +14,55 @@ import  {teams} from '../Data/DummyData';
 const { width, height } = Dimensions.get('screen');
 
 const NewMatchSelectTeam = props => {
+
+    // const team =  firestore().collection('team').get();
+
+    // console.log(team);
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
     const teamData = teams;
    
-    const name =props.route.params.teamName;
-    const name2 = props.route.params.courtName;
-    const name3 = props.route.params.date;
-    const name4 = props.route.params.time;
+    const team_name =props.route.params.teamName;
+    const court_name = props.route.params.courtName;
+    const date = props.route.params.date;
+    const time = props.route.params.time;
 
-    console.log("name",name);
-    console.log('name2',name2);
-    console.log('name2',name3);
-    console.log('name2',name4);
+    console.log("name",team_name);
+    console.log('name2',court_name);
+    console.log('name2',date);
+    console.log('name2',time);
+
+    // const [searchTeams,setSearchTeams] = useState(teamData);
+
+
+    // const teamSearch = (inputText) =>{
+    //     let text = inputText.toLowerCase();
+    //     let teams = searchTeams;
+    //     let filteredTeamName = teams.filter(team => team.teamName.toLowerCase().match(text));
+    // };
 
 
     const sendRequestHandler = () =>{
         for(const key in teams){
-            console.log('Got the request',name,name2,key);
+            let players = teams[key].currentPlayers
+            for(const i in players){
+            console.log('Got the request',team_name,court_name,key,players[i]);
+             }
         }
     };
 
     const sendRequestToOneTeamHandler = (id) =>{
         const selectedTeam = teams.find(team => team.id === id);
-        console.log('Got the request',id,selectedTeam);
+        const players = selectedTeam.currentPlayers
+        for(const key in players){
+        console.log('Got the request', id, selectedTeam.id, players[key]);
+        }
+        // props.navigation.navigate('MatchRequests', {
+        //     teamName: team_name,
+        //     courtName: court_name,
+        //     date: date,
+        //     time:time,
+
+        // });
     }
     
 
@@ -103,11 +130,12 @@ const styles = StyleSheet.create({
 
     },
     profileImage: {
-        width: width * 1.1,
+        width: width ,
         height: 'auto',
     },
     profileContainer: {
-        width: width,
+        marginTop:theme.SIZES.BASE,
+        width: width -theme.SIZES.BASE/20,
         height: height / 4,
     },
     profileDetails: {
