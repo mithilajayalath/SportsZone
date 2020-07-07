@@ -76,16 +76,16 @@ export default class Home extends React.Component {
     const {navigation} = this.props;
     return (
       <Block flex style={styles.home}>
-        <View style={styles.head}> 
-          <Image style={styles.imageViewHead} />
-          <Text style={styles.headText}>FInd a Team & Play Together!</Text>
-        </View>
+      <Block flex style={styles.home}>
+      <Image source = {{uri:"https://www.elegantthemes.com/blog/wp-content/uploads/2017/11/vCita-Appointment-Scheduling-and-Online-Booking-Plugin-Featured-Image.png"}} style={styles.head} />
+
   <ScrollView>
+  
 <PricingCard
   color="#12b8bd"
   price="4 new"
   //info={['Negambo : 3','Colombo    :1']}
-  button={{ title: 'UpComming Bookings', icon: 'flight-takeoff'} }
+  button={{ title: 'UpComming Bookings', icon: 'flight-takeoff'}}
   onButtonPress={()=>navigation.navigate('MyMatches')}
 />
 <PricingCard
@@ -100,6 +100,7 @@ export default class Home extends React.Component {
   button={{ title: 'Tournaments', icon: 'flight-takeoff' }}
 />
 </ScrollView>
+</Block>
 </Block>
     );
   }
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
 },
 head:{
   width:width,
-  height:width/6,
+  height:width/2.5,
   backgroundColor:"#3BAD36",
   justifyContent:"center",
 },
