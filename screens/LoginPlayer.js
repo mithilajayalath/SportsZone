@@ -98,10 +98,10 @@ export default class Login extends React.Component {
           <Block row flex space="around" style={{ zIndex:2 }}>
           <Block flex center>            
               <Block>
-                <Text color="white" size={60}>LOGIN</Text>
+                <Text color="Black" size={60}>LOGIN</Text>
               </Block>
               <Block>
-                <Input placeholder="Email Address"  placeholderTextColor="white" color="white" style={styles.input}
+                <Input placeholder="Email Address"  placeholderTextColor="black" color="black" style={styles.input}
 //                  onChange = {(Value)=> this.setState({email : Value})}
 //                    onChange={this.handleKeywordsChange}
                     onChangeText={(val) => this.updateInputVal(val, 'email')}
@@ -109,7 +109,7 @@ export default class Login extends React.Component {
 //                  onBlur = {()=>this.empty_mobile_number_validator()}
                 />
                 <Text style={{color : 'red',marginLeft:20}}>{this.state.error_mobile_number}</Text>
-                <Input placeholder= "Password" password viewPass placeholderTextColor="white" color="white" iconColor="white" style={styles.input}
+                <Input placeholder= "Password" password viewPass placeholderTextColor="black" color="black" iconColor="black" style={styles.input}
 //                  onChange = {(Value)=> this.setState({password : Value})}
                      onChangeText={(val) => this.updateInputVal(val, 'password')}
                      value={this.state.password}
@@ -122,7 +122,7 @@ export default class Login extends React.Component {
               <Button
                 shadowless
                 style={styles.button}
-                color={materialTheme.COLORS.BUTTON_COLOR}
+                color={materialTheme.COLORS.GREEN}
                 
 //                onPress={() => navigation.navigate('App')}
                 onPress={() => this.handleLogin()}
@@ -130,10 +130,10 @@ export default class Login extends React.Component {
                 Login
               </Button>
               <Block row>
-              <Text color="white"> Do not have an account?</Text>
+              <Text color="black"> Do not have an account? </Text>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Signup')}>
-               <Text color="#9C26B0" style={{fontWeight:"bold"}}>Signup</Text> 
+               <Text color={materialTheme.COLORS.GREEN} style={{fontWeight:"bold"}}>Signup</Text> 
               </TouchableOpacity>
               </Block>
             
@@ -149,7 +149,7 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
   container: {
       flex:1,
-    backgroundColor: theme.COLORS.BLACK,
+    backgroundColor:"#fff",
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 1,
@@ -165,9 +165,9 @@ const styles = StyleSheet.create({
   input: {
     width: width - theme.SIZES.BASE * 4,
     height: theme.SIZES.BASE * 3,
-    borderColor:"black",
-    borderBottomColor: "white",
-    backgroundColor:"black"
+    borderColor:"white",
+    borderBottomColor: "black",
+    backgroundColor:"white"
   },
   
 });
