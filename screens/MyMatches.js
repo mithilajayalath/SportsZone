@@ -96,14 +96,16 @@ export default class MyMatches extends React.Component {
     return (
       <Block flex style={styles.home}>
         {this.renderProducts()}
+        <View>
         <TouchableOpacity
-          activeOpacity={0.7}
+          //activeOpacity={0.7}
           onPress={()=>navigation.navigate('New Match')}
           style={styles.TouchableOpacityStyle}>
           <Icon name="plus-circle" family="material-community" size={55}
           color="#3BAD36" backgroundColor="#fff"
           />
         </TouchableOpacity>
+        </View>
       </Block>
     );
   }
@@ -184,6 +186,8 @@ TouchableOpacityStyle: {
   justifyContent: 'center',
   right: 35,
   bottom: 35,
+  backgroundColor:"white",
+  borderRadius:40
 },
 FloatingButtonStyle: {
   resizeMode: 'contain',
