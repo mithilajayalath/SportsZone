@@ -82,14 +82,20 @@ export default class Home extends React.Component {
         </View>
   <ScrollView>
 <PricingCard
-  color="red"
+  color="#12b8bd"
   price="4 new"
-  info={['Negambo : 3','Colombo    :1']}
+  //info={['Negambo : 3','Colombo    :1']}
   button={{ title: 'UpComming Bookings', icon: 'flight-takeoff'} }
   onButtonPress={()=>navigation.navigate('MyMatches')}
 />
 <PricingCard
-  color="green"
+  color="#4890e1"
+  price="6 new"
+  button={{ title: 'Open Channenges', icon: 'flight-takeoff' }}
+  onButtonPress={()=>navigation.navigate('OpenChallenges')}
+/>
+<PricingCard
+  color="#05a57e"
   price="10 new"
   button={{ title: 'Tournaments', icon: 'flight-takeoff' }}
 />
