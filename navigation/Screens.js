@@ -269,6 +269,11 @@ function HomeStack(props) {
           headerTransparent: true
         }}
       />
+      <Stack.Screen 
+        name="MyMatches"
+        component={MatchesTab}
+    
+      />
     </Stack.Navigator>
   );
 }
