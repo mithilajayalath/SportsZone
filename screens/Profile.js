@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform} from 'react-native';
 import { Block, Text, theme,Input } from 'galio-framework';
-import { LinearGradient } from 'expo-linear-gradient';
 
-import { Icon } from '../components';
-import { Images, materialTheme } from '../constants';
 import { HeaderHeight } from "../constants/utils";
-import { Avatar } from 'react-native-elements';
+import { Avatar ,Button,Icon} from 'react-native-elements';
 //firebase
 import firebase from '../firebase';
 import 'firebase/firestore';
@@ -90,14 +87,23 @@ export default class Profile extends React.Component {
   render(){
     return (
       <Block flex style={styles.profile} >
-        <Block flex backgroundColor={materialTheme.COLORS.GRADIENT_START} >
+      <ScrollView>
+        <Block flex backgroundColor="#3BAD36" >
           <ImageBackground
             //source={{uri: Images.Profile}}
             //backgroundColor='black'
             style={styles.profileContainer}
-            imageStyle={styles.profileImage}>
-            
-            <Block flex style={styles.profileDetails} >
+            //imageStyle={styles.profileImage}
+            >
+            <Block flex  >
+            <Block style={styles.profileTexts} >
+                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri Illesinghe'}</Text>
+                  <Block row >
+                  <Block>
+                    
+                  </Block>
+                </Block>
+              </Block>
               <Block  row middle  >
                     <Avatar
                       rounded
@@ -107,22 +113,14 @@ export default class Profile extends React.Component {
                           'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
                       }}
                     />
+                    
               </Block>
-              <Block row></Block>
-              <Block style={styles.profileTexts} >
-                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri'}</Text>
-                  <Block row >
-                  <Block>
-                    <Text color={theme.COLORS.MUTED} size={16}>
-                      <Icon name="map-marker" family="font-awesome" color={theme.COLORS.MUTED} size={16} />
-                      {''} Colombo,SriLanka
-                      </Text>
-                  </Block>
-                </Block>
-              </Block>
+              
+            
 
-              <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']} style={styles.gradient} />
+              
             </Block>
+
           </ImageBackground>
         </Block>
         <Block flex style={styles.options}>
@@ -133,8 +131,8 @@ export default class Profile extends React.Component {
               icon="heart"
               family="antdesign"
               iconSize={14}
-              iconColor="red"
-              placeholderTextColor="blue"
+              iconColor="blue"
+              placeholderTextColor="#4F8EC9"
           />
           <Text>Mobile</Text>
           <Input
@@ -155,12 +153,17 @@ export default class Profile extends React.Component {
             placeholderTextColor="#4F8EC9"
           />
           <Text>Wins</Text>
-          <Input
+          <Input 
             placeholder="11"
             //style={{ borderColor: "blue" }}
             placeholderTextColor="#4F8EC9"
           />
+          <Button
+          iconRight
+          title="Update Profile"
+          />
         </Block>
+        </ScrollView>
       </Block>
     );
   }
@@ -168,45 +171,32 @@ export default class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   profile: {
-    marginTop:  0,
-    marginBottom: -HeaderHeight * 2.5,
+    paddingTop:0,
+    marginTop:  -HeaderHeight/2,
   },
-  profileImage: {
-    width: width,
-    height:'auto',
-  },
+
   profileContainer: {
+    marginTop:-HeaderHeight/5,
     width: width,
-    height: height / 3,
+    height: height ,
   },
-  profileDetails: {
-    paddingTop: theme.SIZES.BASE * 16,
-    justifyContent: 'flex-end',
-    position: 'relative',
-  },
+
   profileTexts: {
     paddingHorizontal: theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2.5,
-    zIndex: 2
-  },
-  pro: {
-    backgroundColor: materialTheme.COLORS.LABEL,
-    paddingHorizontal: 6,
-    marginRight: theme.SIZES.BASE / 2,
-    borderRadius: 4,
-    height: 19,
-    width: 38,
-  },
-  seller: {
-    marginRight: theme.SIZES.BASE / 2,
+    paddingBottom:0,
+    paddingTop: theme.SIZES.BASE * 2.5,
+    zIndex: 2,
+
   },
   options: {
     position: 'relative',
     padding: theme.SIZES.BASE,
     marginHorizontal: theme.SIZES.BASE,
-    marginTop: -theme.SIZES.BASE * 20,
+    marginTop: -theme.SIZES.BASE * 30,
     borderTopLeftRadius: 13,
     borderTopRightRadius: 13,
+    borderBottomLeftRadius:13,
+    borderBottomRightRadius:13,
     backgroundColor: theme.COLORS.WHITE,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 0 },
@@ -220,13 +210,5 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: thumbMeasure,
     height: thumbMeasure
-  },
-  gradient: {
-    zIndex: 1,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: '30%',
-    position: 'absolute',
   },
 });
