@@ -121,6 +121,7 @@ style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
               <Input placeholder="Mobile Number" minLenght={10} maxLength={10} placeholderTextColor="white" type="number-pad" color="white" style={styles.input}
                 //onChange = {(Value)=> this.setState({mobile_number : Value})}
                 value={this.state.mobile_number}
+               // onChangeText={(val) => this.updateInputVal(val, 'mobile_number')}
                 onChangeText={(val) => this.updateInputVal(val, 'mobile_number')}
                 onBlur={() => this.empty_mobile_number_validator()}
               />
