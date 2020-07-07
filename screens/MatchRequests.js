@@ -7,7 +7,7 @@ const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:123,
+    id:"123",
     title: 'Mancheter United',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
@@ -15,7 +15,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:122,
+    id:"122",
     title: 'Team B',
     time:"6.30PM",
     logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',

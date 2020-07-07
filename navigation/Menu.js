@@ -79,14 +79,9 @@ function CustomDrawerContent({
       </Block>
       <Block flex={0.3} style={{ paddingLeft: 7, paddingRight: 14 }}>
         <DrawerCustomItem
-          title="Sign In"
+          title="Sign Out"
           navigation={navigation}
           focused={state.index === 8 ? true : false}
-        />
-        <DrawerCustomItem
-          title="Sign Up"
-          navigation={navigation}
-          focused={state.index === 9 ? true : false}
         />
       </Block>
     </Block>
