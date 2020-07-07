@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Dimensions, ScrollView,View } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions, ScrollView,View ,TextInput} from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
@@ -9,31 +9,68 @@ const { width } = Dimensions.get('screen');
 import products from '../constants/products';
 import firebase from '../firebase';
 import 'firebase/firestore';
+const { AsyncStorage } = require('react-native');
 
+export function  addPlayer(player,addComplete) {
+  firebase.firestore().collection('player').add({
+    name:player.name,
+    createdat:firebase.firestore.FieldValue.serverTimestamp()
+  }).then((data)=>addComplete(data))
+  .catch((error)=>console.log(error));
+}
+
+export async function getPlayer(playersRetrieved) {
+  var playerList=[];
+  var snapshot=await firebase.firestore().collection('player').get()
+  snapshot.forEach((doc)=>{
+    playerList.push(doc.data());
+  });
+  console.log(playerList);
+  playersRetrieved(playerList);
+}
+
+async function players() {
+  const list = [];
+  const ref = firebase.firestore().collection('player');
+  console.log("in players!");
+  ref.onSnapshot(querySnapshot => {
+    querySnapshot.forEach(doc => {
+      list.push(doc.data());
+    });
+  });
+  console.log("list",list);
+  console.log("snapshot");
+}
 
 export default class Home extends React.Component {
-  /*constructor(props){
-    super(props);
-    this.state=({player:[],newPlayername:'',loading:false});
-    this.ref=firebase.firestore().collection('player');
-    console.log(this.ref.doc());//
-  }
-  
-  componentDidMount(){
-    this.unsubscribe=this.ref.onSnapshot((querySnapshot)=>{
-      const playerData=[];
-      querySnapshot.forEach((doc)=>{ 
-        playerData.push({name:doc.data().name});
-        
-      });
 
-      this.setState({
-        player:playerData,
-        loading:false
-      });
-    });
+  constructor(props) {
+    super(props);
+    this.state = {
+        name:'',
+        gender:''
+    };
+   // {this.getAll()};
+   // players();
+  
   }
-*/
+
+  getAll=(e)=>{
+    console.log("getAll");
+    //e.preventDefault();
+    this.state.name='rusr';
+    firebase.firestore().collection('player').get().then((u)=>{
+    }).catch((error)=>{
+      console.log(error);
+    })
+  }
+
+  handleChange=(e)=>{
+    this.setState({[e.target.name]:e.target.value});
+  }
+
+
+
   render() {
     return (
       <Block flex>
