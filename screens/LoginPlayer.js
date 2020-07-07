@@ -98,10 +98,10 @@ export default class Login extends React.Component {
           <Block row flex space="around" style={{ zIndex:2 }}>
           <Block flex center>            
               <Block>
-                <Text color="Black" size={60}>LOGIN</Text>
+                <Text color="black" size={60}>LOGIN</Text>
               </Block>
               <Block>
-                <Input placeholder="Email Address"  placeholderTextColor="black" color="black" style={styles.input}
+                <Input placeholder="Email Address" type="email-address" placeholderTextColor="black" color="black" style={styles.input}
 //                  onChange = {(Value)=> this.setState({email : Value})}
 //                    onChange={this.handleKeywordsChange}
                     onChangeText={(val) => this.updateInputVal(val, 'email')}

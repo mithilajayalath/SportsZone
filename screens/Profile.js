@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 //---------------------redux----------------------------------------------------------/*/
-
+import materialTheme from "../constants/Theme"
 
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
@@ -88,7 +88,7 @@ export default class Profile extends React.Component {
     return (
       <Block flex style={styles.profile} >
       <ScrollView>
-        <Block flex backgroundColor="#3BAD36" >
+        <Block flex backgroundColor={materialTheme.COLORS.GREEN} >
           <ImageBackground
             //source={{uri: Images.Profile}}
             //backgroundColor='black'
@@ -96,15 +96,8 @@ export default class Profile extends React.Component {
             //imageStyle={styles.profileImage}
             >
             <Block flex  >
-            <Block style={styles.profileTexts} >
-                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri Illesinghe'}</Text>
-                  <Block row >
-                  <Block>
-                    
-                  </Block>
-                </Block>
-              </Block>
-              <Block  row middle  >
+            
+              <Block  row middle style={{paddingTop:10}} >
                     <Avatar
                       rounded
                       size="xlarge"
@@ -116,13 +109,16 @@ export default class Profile extends React.Component {
                     
               </Block>
               
-            
+              <Block style={styles.profileTexts} >
+                  <Text color="white" size={28} style={{ paddingTop: 5 }} italic >{'Rusiri Illesinghe'}</Text>
+              </Block>
+              
 
               
             </Block>
 
           </ImageBackground>
-        </Block>
+          </Block>
         <Block flex style={styles.options}>
           <Text>User Name</Text>
           <Input
@@ -165,18 +161,19 @@ export default class Profile extends React.Component {
         </Block>
         </ScrollView>
       </Block>
+      
     );
   }
 }
 
 const styles = StyleSheet.create({
   profile: {
-    paddingTop:0,
-    marginTop:  -HeaderHeight/2,
+    //paddingTop:0,
+   // marginTop:  -HeaderHeight/2,
   },
 
   profileContainer: {
-    marginTop:-HeaderHeight/5,
+   // marginTop:-HeaderHeight/5,
     width: width,
     height: height ,
   },
@@ -186,6 +183,7 @@ const styles = StyleSheet.create({
     paddingBottom:0,
     paddingTop: theme.SIZES.BASE * 2.5,
     zIndex: 2,
+    alignItems:"center"
 
   },
   options: {
