@@ -40,7 +40,7 @@ export default class Profile extends React.Component {
     return (
       <Block flex style={styles.profile} >
       <ScrollView>
-        <Block flex backgroundColor="#3BAD36" >
+        <Block flex  >
           <ImageBackground 
             //source={{uri: Images.Profile}}
             //backgroundColor='black'
@@ -60,7 +60,7 @@ export default class Profile extends React.Component {
               </Block>
               
               <Block style={styles.profileTexts}  >
-                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri Illesinghe'}</Text>
+                <Text color="green" size={28} style={{ paddingTop: 25 }} >{'Rusiri Illesinghe'}</Text>
               </Block>
 
               
@@ -68,58 +68,59 @@ export default class Profile extends React.Component {
 
           </ImageBackground>
         </Block>
-        <Block flex style={styles.options} >
-          <Text>User Name</Text>
+        <Block flex style={styles.options} backgroundColor="#3BAD36" >
+          <Text color='white'>User Name</Text>
           <Input
               placeholder="Rusiri Illesinghe"
               right
               icon="heart"
               family="antdesign"
               iconSize={14}
-              iconColor="blue"
-              placeholderTextColor="#4F8EC9"
+              iconColor="green"
+              placeholderTextColor="green"
               value={this.state.username}
               onChangeText={(val) => this.updateInputVal(val, 'username')}
 
           />
-          <Text>Mobile</Text>
+          <Text color='white'>Mobile</Text>
           <Input
             placeholder="0771905830"
             //style={{ borderColor: "blue" }}
-            placeholderTextColor="#4F8EC9"
+            placeholderTextColor="green"
             value={this.state.mobile}
             onChangeText={(val) => this.updateInputVal(val, 'mobile')}
 
           />
-          <Text>Gender</Text>
+          <Text color='white'>Gender</Text>
           <Input
             placeholder="Female"
             //style={{ borderColor: "blue" }}
-            placeholderTextColor="#4F8EC9"
+            placeholderTextColor="green"
             value={this.state.gender}
             onChangeText={(val) => this.updateInputVal(val, 'gender')}
 
           />
-          <Text>Matches Played</Text>
+          <Text color='white'>Matches Played</Text>
           <Input
             placeholder="21"
             //style={{ borderColor: "blue" }}
-            placeholderTextColor="#4F8EC9"
+            placeholderTextColor="green"
             value={this.state.matches}
             onChangeText={(val) => this.updateInputVal(val, 'matches')}
 
           />
-          <Text>Wins</Text>
-          <Input 
+          <Text color='white'>Wins</Text>
+          <Input
             placeholder="11"
             //style={{ borderColor: "blue" }}
-            placeholderTextColor="#4F8EC9"
-            value={this.state.wins}
+            placeholderTextColor="green"
+            value={this.state.matches}
             onChangeText={(val) => this.updateInputVal(val, 'wins')}
 
           />
+          
           <Button
-          iconRight
+          
           title="Update Profile"
           />
         </Block>
