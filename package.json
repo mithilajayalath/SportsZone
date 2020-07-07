@@ -30,7 +30,7 @@
     "expo-asset": "~8.0.0",
     "expo-font": "~8.0.0",
     "expo-linear-gradient": "~8.0.0",
-    "firebase": "^7.15.1",
+    "firebase": "^7.15.5",
     "galio-framework": "~0.6.3",
     "moment": "^2.27.0",
     "react": "16.9.0",
@@ -58,7 +58,7 @@
   "devDependencies": {
     "babel-preset-expo": "~8.0.0",
     "cross-env": "~7.0.0",
-    "expo-cli": "^3.21.5",
+    "expo-cli": "^3.21.13",
     "jest-expo": "~36.0.0",
     "redux-devtools": "^3.5.0"
   },
