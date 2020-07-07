@@ -31,13 +31,15 @@ const NewMatchSelectTeam = props => {
     console.log('name2',date);
     console.log('name2',time);
 
-    // const [searchTeams,setSearchTeams] = useState(teamData);
-
+    // const [enteredTeam,setEnteredTeam] = useState('');
+    // const [filteredTeams,setFilteredTeams] = useState(teamData);
 
     // const teamSearch = (inputText) =>{
+
     //     let text = inputText.toLowerCase();
-    //     let teams = searchTeams;
-    //     let filteredTeamName = teams.filter(team => team.teamName.toLowerCase().match(text));
+    //     let teams = teamData;
+    //     let selectedTeams = teams.filter(team => team.teamName.toLowerCase().match(text));
+    //     setFilteredTeams(selectedTeams)
     // };
 
 
@@ -108,7 +110,9 @@ const NewMatchSelectTeam = props => {
                         style={styles.search}
                         iconContent={iconCamera}
                         placeholder="Select a team"
-                        onFocus={() => { }}
+                       // onChangeText={(val)=>{setEnteredTeam(val)}}
+                       // value ={enteredTeam}
+                       onFocus={()=>{}}
                     />
                 </Block>
                 <Block style={styles.container}>
