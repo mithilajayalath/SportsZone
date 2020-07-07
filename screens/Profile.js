@@ -7,10 +7,86 @@ import { Icon } from '../components';
 import { Images, materialTheme } from '../constants';
 import { HeaderHeight } from "../constants/utils";
 import { Avatar } from 'react-native-elements';
+//firebase
+import firebase from '../firebase';
+import 'firebase/firestore';
+const firestoreDB = firebase.firestore();
+
+//------------------redux----------------------------------------------------------//
+/*
+import { Provider } from 'react-redux';
+import {ReactReduxFirebaseProvider,firebaseReducer} from 'react-redux-firebase';
+import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
+import { createStore, combineReducers, compose } from 'redux'; 
+
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+}
+
+// Add firebase to reducers
+const rootReducer = combineReducers({
+  firebase: firebaseReducer,
+  firestore: firestoreReducer // <- needed if using firestore
+})
+
+// Create store with reducers and initial state
+// Initial State...
+const initialState = {
+  //personData: { },
+}
+
+const store = createStore(rootReducer, initialState);
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance // <- needed if using firestore
+}
+
+// Action Creators
+const setPersonData = (personData) => {
+  return {
+    type: "setPersonData",
+    value: personData
+  };
+};
+
+const watchPersonData = () => {
+  return function(dispatch) {
+    console.log("persondata : ");
+    firebase.database().ref("player").on("value", function(snapshot) {
+        
+        var personData = snapshot.val();
+        var actionSetPersonData = setPersonData(personData);
+        dispatch(actionSetPersonData);
+        console.log("persondata : ",personData);
+    }, function(error) { console.log(error); });
+  }
+};
+
+const mapStateToProps = (state) => {
+  //console.log("persondata : ",state.personData);
+  return { 
+    personData: state.personData
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    watchPersonData: () => dispatch(watchPersonData())
+  };
+}
+//---------------------redux----------------------------------------------------------/*/
+
+
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
 
 export default class Profile extends React.Component {
+
   render(){
     return (
       <Block flex style={styles.profile} >
@@ -34,7 +110,7 @@ export default class Profile extends React.Component {
               </Block>
               <Block row></Block>
               <Block style={styles.profileTexts} >
-                <Text color="white" size={28} style={{ paddingTop: 25 }} >Rusiri Illesinghe</Text>
+                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri'}</Text>
                   <Block row >
                   <Block>
                     <Text color={theme.COLORS.MUTED} size={16}>
@@ -49,7 +125,7 @@ export default class Profile extends React.Component {
             </Block>
           </ImageBackground>
         </Block>
-        <Block flex style={styles.options} backgroundColor='black'>
+        <Block flex style={styles.options}>
           <Text>User Name</Text>
           <Input
               placeholder="Rusiri Illesinghe"
