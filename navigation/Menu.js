@@ -25,6 +25,7 @@ function CustomDrawerContent({
     "Profile",
     "Settings",
     "Components",
+    "New Match",
     "My Matches"
   ];
   return (
