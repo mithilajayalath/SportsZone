@@ -91,7 +91,7 @@ export default class Home extends React.Component {
   }
 
   render() {
-    
+    const { navigation } = this.props;
     return (
       
       <Block flex style={styles.home}>
@@ -105,9 +105,14 @@ export default class Home extends React.Component {
         <View style={{padding:5}}></View>
         {this.renderProducts()}
 
-        <View style={{padding:20,flexDirection:"row", justifyContent:"flex-end",backgroundColor: "#00000000"}}>
-          <AntDesign name="pluscircle" size={50} color="#32cd32" />
-        </View>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={()=>navigation.navigate('CreateTeam')}
+          style={styles.TouchableOpacityStyle}>
+          <Icon name="plus-circle" family="material-community" size={55}
+          color="#3BAD36" backgroundColor="#fff"
+          />
+        </TouchableOpacity>
         
       </Block>
     );
@@ -163,6 +168,16 @@ const styles = StyleSheet.create({
   //  paddingVertical: theme.SIZES.BASE * 2,
     flex:1,
     flexDirection:"row",
+  },
+  TouchableOpacityStyle: {
+    //Here is the trick
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 35,
+    bottom: 35,
   },
   list:{
     flex:1, 

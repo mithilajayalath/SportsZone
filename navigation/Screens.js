@@ -427,6 +427,13 @@ export default function OnboardingStack(props) {
         }}
       />
       <Stack.Screen
+        name="CreateTeam"
+        component={CreateTeamScreen}
+        option={{
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
         name="Profile"
         component={ProfileScreen}
         option={{
