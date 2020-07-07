@@ -1,73 +1,100 @@
-import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Dimensions, ScrollView,View ,TextInput,Image} from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
-
+import { Header,ListItem, PricingCard ,Divider } from 'react-native-elements';
+import { Images, materialTheme } from '../constants';
 const { width } = Dimensions.get('screen');
 import products from '../constants/products';
+import firebase from '../firebase';
+import 'firebase/firestore';
+import { GradientHeader } from "react-native-gradient-header";
+const { AsyncStorage } = require('react-native');
+
+export function  addPlayer(player,addComplete) {
+  firebase.firestore().collection('player').add({
+    name:player.name,
+    createdat:firebase.firestore.FieldValue.serverTimestamp()
+  }).then((data)=>addComplete(data))
+  .catch((error)=>console.log(error));
+}
+
+export async function getPlayer(playersRetrieved) {
+  var playerList=[];
+  var snapshot=await firebase.firestore().collection('player').get()
+  snapshot.forEach((doc)=>{
+    playerList.push(doc.data());
+  });
+  console.log(playerList);
+  playersRetrieved(playerList);
+}
+
+async function players() {
+  const list = [];
+  const ref = firebase.firestore().collection('player');
+  console.log("in players!");
+  ref.onSnapshot(querySnapshot => {
+    querySnapshot.forEach(doc => {
+      list.push(doc.data());
+    });
+  });
+  console.log("list",list);
+  console.log("snapshot");
+}
 
 export default class Home extends React.Component {
-  renderSearch = () => {
-    const { navigation } = this.props;
-    const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
 
-    return (
-      <Input
-        right
-        color="black"
-        style={styles.search}
-        iconContent={iconCamera}
-        placeholder="What are you looking for?"
-        onFocus={() => navigation.navigate('Pro')}
-      />
-    )
-  }
+  constructor(props) {
+    super(props);
+    this.state = {
+        name:'',
+        gender:''
+    };
+   // {this.getAll()};
+   // players();
   
-  renderTabs = () => {
-    const { navigation } = this.props;
-
-    return (
-      <Block row style={styles.tabs}>
-        <Button shadowless style={[styles.tab, styles.divider]} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon name="grid" family="feather" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Categories</Text>
-          </Block>
-        </Button>
-        <Button shadowless style={styles.tab} onPress={() => navigation.navigate('Pro')}>
-          <Block row middle>
-            <Icon size={16} name="camera-18" family="GalioExtra" style={{ paddingRight: 8 }} />
-            <Text size={16} style={styles.tabTitle}>Best Deals</Text>
-          </Block>
-        </Button>
-      </Block>
-    )
   }
 
-  renderProducts = () => {
-    return (
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.products}>
-        <Block flex>
-          <Product product={products[0]} horizontal />
-          <Block flex row>
-            <Product product={products[1]} style={{ marginRight: theme.SIZES.BASE }} />
-            <Product product={products[2]} />
-          </Block>
-          <Product product={products[3]} horizontal />
-          <Product product={products[4]} full />
-        </Block>
-      </ScrollView>
-    )
+  getAll=(e)=>{
+    console.log("getAll");
+    //e.preventDefault();
+    this.state.name='rusr';
+    firebase.firestore().collection('player').get().then((u)=>{
+    }).catch((error)=>{
+      console.log(error);
+    })
   }
+
+  handleChange=(e)=>{
+    this.setState({[e.target.name]:e.target.value});
+  }
+
+
 
   render() {
+    const {navigation} = this.props;
     return (
-      <Block flex center style={styles.home}>
-        {this.renderProducts()}
-      </Block>
+      <Block flex style={styles.home}>
+        <View style={styles.head}> 
+          <Image style={styles.imageViewHead} />
+          <Text style={styles.headText}>FInd a Team & Play Together!</Text>
+        </View>
+  <ScrollView>
+<PricingCard
+  color="red"
+  price="4 new"
+  info={['Negambo : 3','Colombo    :1']}
+  button={{ title: 'UpComming Bookings', icon: 'flight-takeoff'} }
+  onButtonPress={()=>navigation.navigate('MyMatches')}
+/>
+<PricingCard
+  color="green"
+  price="10 new"
+  button={{ title: 'Tournaments', icon: 'flight-takeoff' }}
+/>
+</ScrollView>
+</Block>
     );
   }
 }
@@ -120,4 +147,29 @@ const styles = StyleSheet.create({
     width: width - theme.SIZES.BASE * 2,
     paddingVertical: theme.SIZES.BASE * 2,
   },
+  imageView: {
+    width: width/5,
+    height: width/5 ,
+    margin: 7,
+    borderRadius : 7,
+},
+head:{
+  width:width,
+  height:width/6,
+  backgroundColor:"#3BAD36",
+  justifyContent:"center",
+},
+headText:{
+  alignSelf:"center",
+  fontSize:20,
+  color:"white",
+  
+},
+imageViewHead:{
+  width: width/5,
+    height: width/30 ,
+    margin: 7,
+    borderRadius : 7,
+    alignSelf:"center"
+}
 });

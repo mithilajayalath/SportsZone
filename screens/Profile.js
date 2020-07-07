@@ -1,82 +1,165 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, Image, ImageBackground, Platform } from 'react-native';
-import { Block, Text, theme } from 'galio-framework';
+import { Block, Text, theme,Input } from 'galio-framework';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import { Icon } from '../components';
 import { Images, materialTheme } from '../constants';
 import { HeaderHeight } from "../constants/utils";
+import { Avatar } from 'react-native-elements';
+//firebase
+import firebase from '../firebase';
+import 'firebase/firestore';
+const firestoreDB = firebase.firestore();
+
+//------------------redux----------------------------------------------------------//
+/*
+import { Provider } from 'react-redux';
+import {ReactReduxFirebaseProvider,firebaseReducer} from 'react-redux-firebase';
+import { createFirestoreInstance, firestoreReducer } from 'redux-firestore';
+import { createStore, combineReducers, compose } from 'redux'; 
+
+// react-redux-firebase config
+const rrfConfig = {
+  userProfile: 'users',
+  useFirestoreForProfile: true // Firestore for Profile instead of Realtime DB
+}
+
+// Add firebase to reducers
+const rootReducer = combineReducers({
+  firebase: firebaseReducer,
+  firestore: firestoreReducer // <- needed if using firestore
+})
+
+// Create store with reducers and initial state
+// Initial State...
+const initialState = {
+  //personData: { },
+}
+
+const store = createStore(rootReducer, initialState);
+
+const rrfProps = {
+  firebase,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance // <- needed if using firestore
+}
+
+// Action Creators
+const setPersonData = (personData) => {
+  return {
+    type: "setPersonData",
+    value: personData
+  };
+};
+
+const watchPersonData = () => {
+  return function(dispatch) {
+    console.log("persondata : ");
+    firebase.database().ref("player").on("value", function(snapshot) {
+        
+        var personData = snapshot.val();
+        var actionSetPersonData = setPersonData(personData);
+        dispatch(actionSetPersonData);
+        console.log("persondata : ",personData);
+    }, function(error) { console.log(error); });
+  }
+};
+
+const mapStateToProps = (state) => {
+  //console.log("persondata : ",state.personData);
+  return { 
+    personData: state.personData
+  };
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return { 
+    watchPersonData: () => dispatch(watchPersonData())
+  };
+}
+//---------------------redux----------------------------------------------------------/*/
+
 
 const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
 
 export default class Profile extends React.Component {
-  render() {
+
+  render(){
     return (
-      <Block flex style={styles.profile}>
-        <Block flex>
+      <Block flex style={styles.profile} >
+        <Block flex backgroundColor={materialTheme.COLORS.GRADIENT_START} >
           <ImageBackground
-            source={{uri: Images.Profile}}
+            //source={{uri: Images.Profile}}
+            //backgroundColor='black'
             style={styles.profileContainer}
             imageStyle={styles.profileImage}>
-            <Block flex style={styles.profileDetails}>
-              <Block style={styles.profileTexts}>
-                <Text color="white" size={28} style={{ paddingBottom: 8 }}>Rachel Brown</Text>
-                <Block row space="between">
-                  <Block row>
-                    <Block middle style={styles.pro}>
-                      <Text size={16} color="white">Pro</Text>
-                    </Block>
-                    <Text color="white" size={16} muted style={styles.seller}>Seller</Text>
-                    <Text size={16} color={materialTheme.COLORS.WARNING}>
-                      4.8 <Icon name="shape-star" family="GalioExtra" size={14} />
-                    </Text>
-                  </Block>
+            
+            <Block flex style={styles.profileDetails} >
+              <Block  row middle  >
+                    <Avatar
+                      rounded
+                      size="xlarge"
+                      source={{
+                        uri:
+                          'https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg',
+                      }}
+                    />
+              </Block>
+              <Block row></Block>
+              <Block style={styles.profileTexts} >
+                <Text color="white" size={28} style={{ paddingTop: 25 }} >{'Rusiri'}</Text>
+                  <Block row >
                   <Block>
                     <Text color={theme.COLORS.MUTED} size={16}>
                       <Icon name="map-marker" family="font-awesome" color={theme.COLORS.MUTED} size={16} />
-                      {` `} Los Angeles, CA
+                      {''} Colombo,SriLanka
                       </Text>
                   </Block>
                 </Block>
               </Block>
+
               <LinearGradient colors={['rgba(0,0,0,0)', 'rgba(0,0,0,1)']} style={styles.gradient} />
             </Block>
           </ImageBackground>
         </Block>
         <Block flex style={styles.options}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <Block row space="between" style={{ padding: theme.SIZES.BASE, }}>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>36</Text>
-                <Text muted size={12}>Orders</Text>
-              </Block>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>5</Text>
-                <Text muted size={12}>Bids & Offers</Text>
-              </Block>
-              <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>2</Text>
-                <Text muted size={12}>Messages</Text>
-              </Block>
-            </Block>
-            <Block row space="between" style={{ paddingVertical: 16, alignItems: 'baseline' }}>
-              <Text size={16}>Recently viewed</Text>
-              <Text size={12} color={theme.COLORS.PRIMARY} onPress={() => this.props.navigation.navigate('Home')}>View All</Text>
-            </Block>
-            <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
-              <Block row space="between" style={{ flexWrap: 'wrap' }} >
-                {Images.Viewed.map((img, imgIndex) => (
-                  <Image
-                    source={{ uri: img }}
-                    key={`viewed-${img}`}  
-                    resizeMode="cover"
-                    style={styles.thumb}
-                  />
-                ))}
-              </Block>
-            </Block>
-          </ScrollView>
+          <Text>User Name</Text>
+          <Input
+              placeholder="Rusiri Illesinghe"
+              right
+              icon="heart"
+              family="antdesign"
+              iconSize={14}
+              iconColor="red"
+              placeholderTextColor="blue"
+          />
+          <Text>Mobile</Text>
+          <Input
+            placeholder="0771905830"
+            //style={{ borderColor: "blue" }}
+            placeholderTextColor="#4F8EC9"
+          />
+          <Text>Gender</Text>
+          <Input
+            placeholder="Female"
+            //style={{ borderColor: "blue" }}
+            placeholderTextColor="#4F8EC9"
+          />
+          <Text>Matches Played</Text>
+          <Input
+            placeholder="21"
+            //style={{ borderColor: "blue" }}
+            placeholderTextColor="#4F8EC9"
+          />
+          <Text>Wins</Text>
+          <Input
+            placeholder="11"
+            //style={{ borderColor: "blue" }}
+            placeholderTextColor="#4F8EC9"
+          />
         </Block>
       </Block>
     );
@@ -85,25 +168,25 @@ export default class Profile extends React.Component {
 
 const styles = StyleSheet.create({
   profile: {
-    marginTop: Platform.OS === 'android' ? -HeaderHeight : 0,
-    marginBottom: -HeaderHeight * 2,
+    marginTop:  0,
+    marginBottom: -HeaderHeight * 2.5,
   },
   profileImage: {
-    width: width * 1.1,
-    height: 'auto',
+    width: width,
+    height:'auto',
   },
   profileContainer: {
     width: width,
-    height: height / 2,
+    height: height / 3,
   },
   profileDetails: {
-    paddingTop: theme.SIZES.BASE * 4,
+    paddingTop: theme.SIZES.BASE * 16,
     justifyContent: 'flex-end',
     position: 'relative',
   },
   profileTexts: {
     paddingHorizontal: theme.SIZES.BASE * 2,
-    paddingVertical: theme.SIZES.BASE * 2,
+    paddingVertical: theme.SIZES.BASE * 2.5,
     zIndex: 2
   },
   pro: {
@@ -121,7 +204,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     padding: theme.SIZES.BASE,
     marginHorizontal: theme.SIZES.BASE,
-    marginTop: -theme.SIZES.BASE * 7,
+    marginTop: -theme.SIZES.BASE * 20,
     borderTopLeftRadius: 13,
     borderTopRightRadius: 13,
     backgroundColor: theme.COLORS.WHITE,

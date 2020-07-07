@@ -18,13 +18,15 @@ function CustomDrawerContent({
   const insets = useSafeArea();
   const screens = [
     "Home",
-    "Woman",
-    "Man",
-    "Kids",
-    "New Collection",
+    // "Woman",
+    // "Man",
+    // "Kids",
+    //"New Collection",
     "Profile",
     "Settings",
-    "Components"
+    "Components",
+    "New Match",
+    "My Matches"
   ];
   return (
     <Block
@@ -43,11 +45,6 @@ function CustomDrawerContent({
           </Block>
         </TouchableWithoutFeedback>
         <Block row>
-          <Block middle style={styles.pro}>
-            <Text size={16} color="white">
-              {profile.plan}
-            </Text>
-          </Block>
           <Text size={16} muted style={styles.seller}>
             {profile.type}
           </Text>
@@ -82,14 +79,9 @@ function CustomDrawerContent({
       </Block>
       <Block flex={0.3} style={{ paddingLeft: 7, paddingRight: 14 }}>
         <DrawerCustomItem
-          title="Sign In"
+          title="Sign Out"
           navigation={navigation}
           focused={state.index === 8 ? true : false}
-        />
-        <DrawerCustomItem
-          title="Sign Up"
-          navigation={navigation}
-          focused={state.index === 9 ? true : false}
         />
       </Block>
     </Block>
