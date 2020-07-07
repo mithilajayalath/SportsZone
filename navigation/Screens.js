@@ -11,6 +11,9 @@ import ComponentsScreen from '../screens/Components';
 import HomeScreen from '../screens/Home';
 import OnboardingScreen from '../screens/Onboarding';
 import ProfileScreen from '../screens/Profile';
+import TeamsScreen from '../screens/Teams';
+import CreateTeamScreen from '../screens/CreateTeam';
+import ViewTeamScreen from '../screens/ViewTeam';
 import ProScreen from '../screens/Pro';
 import NewMatchStartScreen from '../screens/NewMatchStartScreen';
 import NewMatchSelectTeam from '../screens/NewMatchSelectTeam';
@@ -65,6 +68,30 @@ function ProfileStack(props) {
     </Stack.Navigator>
   );
 }
+
+function TeamStack(props) {
+  return (
+    <Stack.Navigator initialRouteName="Team" mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Team"
+        component={TeamScreen}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header
+              white
+              transparent
+              title="Team"
+              scene={scene}
+              navigation={navigation}
+            />
+          ),
+          headerTransparent: true
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 // Login
 
 
@@ -272,6 +299,32 @@ function HomeStack(props) {
     </Stack.Navigator>
   );
 }
+
+function TeamsStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen">
+      <Stack.Screen
+        name="Teams"
+        component={TeamsTab}
+        options={{
+          header: ({ navigation, scene }) => (
+            <Header title="Teams" scene={scene} navigation={navigation} />
+          ),
+          headerRight: ()=>(
+            <TouchableOpacity>
+             <Icon
+              name='close'
+              family='Galio'
+              size={16}
+            />  
+          </TouchableOpacity>
+          )
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
 
 function AppStack(props) {
   return (
