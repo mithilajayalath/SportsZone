@@ -7,7 +7,7 @@ const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:121,
+    id:"121",
     title: 'Team C',
     time:"3.00PM",
     logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
@@ -15,7 +15,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:124,
+    id:"124",
     title: 'Team D',
     time:"6.00PM",
     logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',

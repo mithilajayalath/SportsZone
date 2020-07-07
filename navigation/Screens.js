@@ -207,6 +207,29 @@ function MyMatchesStack(props) {
         //   )
         // }}
       />
+      <Stack.Screen
+        name="New Match"
+        component={NewMatchStartScreen}
+        // options={{
+        //   header: ({ navigation }) => (
+        //     <Header 
+        //     title="NewMatch"
+        //     navigation={navigation}
+        //     transparent
+            
+        //      />
+        //   ),
+        // }}
+      />
+      <Stack.Screen
+        name="NewMatchSelectTeam"
+        component={NewMatchSelectTeam}
+        options={{
+          header: ({ navigation }) => (
+            <Header back title="NewMatch"  navigation={navigation} />
+          )
+        }}
+      />
     </Stack.Navigator>
   );
 }

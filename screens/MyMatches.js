@@ -9,7 +9,7 @@ const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:123,
+    id:"123",
     title: 'Team A',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
@@ -17,7 +17,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:122,
+    id:"122",
     title: 'Team B',
     time:"6.30PM",
     logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',
@@ -25,7 +25,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:121,
+    id:"121",
     title: 'Team C',
     time:"4.00PM",
     logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
@@ -33,7 +33,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:124,
+    id:"124",
     title: 'Team D',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
@@ -41,7 +41,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:131,
+    id:"131",
     title: 'Team C',
     time:"4.00PM",
     logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
@@ -49,7 +49,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:134,
+    id:"134",
     title: 'Team D',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
@@ -92,12 +92,13 @@ export default class Home extends React.Component {
   }
 
   render() {
+    const {navigation} = this.props;
     return (
       <Block flex style={styles.home}>
         {this.renderProducts()}
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={this.clickHandler}
+          onPress={()=>navigation.navigate('New Match')}
           style={styles.TouchableOpacityStyle}>
           <Icon name="plus-circle" family="material-community" size={55}
           color="#3BAD36" backgroundColor="#fff"
