@@ -411,7 +411,7 @@ function AppStack(props) {
 
 export default function OnboardingStack(props) {
   return (
-    <Stack.Navigator mode="card" headerMode="none" initialRouteName='App'>
+    <Stack.Navigator mode="card" headerMode="none" initialRouteName='Login'>
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
