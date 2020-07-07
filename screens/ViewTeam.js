@@ -1,87 +1,86 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image,TouchableOpacity } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
+import { AntDesign } from '@expo/vector-icons'; 
+ 
 
-import { Icon, Product } from '../components/';
+import { Icon, Product } from '../components';
 import Theme from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:"123",
-    title: 'Team A',
+    id:123,
+    title: 'Mithila Jayalath',
     time:"4.00PM",
-    logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
+    logo:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3BA8Cz7zVmsHKaVMLhpaL1LwnwFClTjXgMg&usqp=CAU',
     date:"05th July 2020",
     venue:"Colombo Futsal Club"
   },
   {
-    id:"122",
-    title: 'Team B',
+    id:122,
+    title: 'Yasas Ramanayake  ',
     time:"6.30PM",
-    logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',
+    logo:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3BA8Cz7zVmsHKaVMLhpaL1LwnwFClTjXgMg&usqp=CAU',
     date:"06th July 2020",
     venue:"Colombo Futsal Club"
   },
   {
-    id:"121",
-    title: 'Team C',
+    id:121,
+    title: 'Piyumal DK ',
     time:"4.00PM",
-    logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
+    logo:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3BA8Cz7zVmsHKaVMLhpaL1LwnwFClTjXgMg&usqp=CAU',
     date:"07th July 2020",
     venue:"Colombo Futsal Club"
   },
+
   {
-    id:"124",
-    title: 'Team D',
+    id:119,
+    title: 'Isuru Jayamanne',
     time:"4.00PM",
-    logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
-    date:"12th July 2020",
-    venue:"Colombo Futsal Club"
-  },
-  {
-    id:"131",
-    title: 'Team C',
-    time:"4.00PM",
-    logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
+    logo:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3BA8Cz7zVmsHKaVMLhpaL1LwnwFClTjXgMg&usqp=CAU',
     date:"07th July 2020",
     venue:"Colombo Futsal Club"
   },
+
   {
-    id:"134",
-    title: 'Team D',
+    id:118,
+    title: 'Niroshan Jeyakumar',
     time:"4.00PM",
-    logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
-    date:"12th July 2020",
+    logo:'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT3BA8Cz7zVmsHKaVMLhpaL1LwnwFClTjXgMg&usqp=CAU',
+    date:"07th July 2020",
     venue:"Colombo Futsal Club"
   },
+  
 ];
 
-export default class MyMatches extends React.Component {
+export default class Home extends React.Component {
   
 
   renderProducts = () => {
+    const { navigation } = this.props;
     return (
      
       <FlatList
            data={DATA}
            renderItem={({item})=>
-           <View style={styles.list}>
- 
+           <TouchableOpacity
+                onPress={() => navigation.navigate('Profile')}>
+           <View style={styles.list }>
+            
            <Image source = {{uri:item.logo}} style={styles.imageView} />
-          <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
-              <Text size={16}>{item.title}</Text>
-          </View>
+          {/* <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
+              
+          </View> */}
            
-           <View style={{flex:4, flexDirection: 'column', alignItems:"flex-end",justifyContent:"center", paddingRight:20}}>
-           <Text>{item.time}</Text>
-           <Text >{item.date}</Text>
-           <Text>{item.venue}</Text>
+           <View style={{flex:4, flexDirection: 'column', alignItems:"flex-end",justifyContent:"center", paddingRight:120}}>
+           <Text size={16}>{item.title}</Text>
+           
            </View>
-           
 
          </View>
+         </TouchableOpacity>
          }
          keyExtractor={item => item.id}
          />
@@ -92,18 +91,24 @@ export default class MyMatches extends React.Component {
   }
 
   render() {
-    const {navigation} = this.props;
+    
     return (
+      
       <Block flex style={styles.home}>
+        
+        <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
+          <Text style={{fontSize:30, color:"white"}}>Players</Text>
+        </View>
+        
+        
+
+        <View style={{padding:5}}></View>
         {this.renderProducts()}
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={()=>navigation.navigate('New Match')}
-          style={styles.TouchableOpacityStyle}>
-          <Icon name="plus-circle" family="material-community" size={55}
-          color="#3BAD36" backgroundColor="#fff"
-          />
-        </TouchableOpacity>
+
+        <View style={{padding:20,flexDirection:"row", justifyContent:"flex-end",backgroundColor: "#00000000"}}>
+          <AntDesign name="pluscircle" size={50} color="#32cd32" />
+        </View>
+        
       </Block>
     );
   }
@@ -164,32 +169,16 @@ const styles = StyleSheet.create({
     flexDirection: 'row', 
     justifyContent:"space-evenly",
     backgroundColor:"#fff",
-    //borderRadius:25,
     borderBottomWidth:10,
     borderBottomColor:Theme.COLORS.BORDER_COLOR,
-    paddingVertical:10,
+    padding:1,
+    borderRadius:20
   },
   imageView: {
     width: width/5,
     height: width/5 ,
     margin: 7,
     borderRadius : 7,
-},
-TouchableOpacityStyle: {
-  //Here is the trick
-  position: 'absolute',
-  width: 50,
-  height: 50,
-  alignItems: 'center',
-  justifyContent: 'center',
-  right: 35,
-  bottom: 35,
-},
-FloatingButtonStyle: {
-  resizeMode: 'contain',
-  width: 50,
-  height: 50,
-  //backgroundColor:'black'
 },
 
 });

@@ -1,84 +1,59 @@
 import React from 'react';
 import { StyleSheet, Dimensions, ScrollView, FlatList,View,Image,TouchableOpacity } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
+import { AntDesign } from '@expo/vector-icons'; 
 
-import { Icon, Product } from '../components/';
+import { Icon, Product } from '../components';
 import Theme from '../constants/Theme';
 
 const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:"123",
-    title: 'Team A',
+    id:123,
+    title: 'Home Team',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
     date:"05th July 2020",
     venue:"Colombo Futsal Club"
   },
   {
-    id:"122",
-    title: 'Team B',
+    id:122,
+    title: 'University Team',
     time:"6.30PM",
     logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',
     date:"06th July 2020",
     venue:"Colombo Futsal Club"
   },
   {
-    id:"121",
-    title: 'Team C',
+    id:121,
+    title: 'Negombo Club',
     time:"4.00PM",
     logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
     date:"07th July 2020",
     venue:"Colombo Futsal Club"
   },
-  {
-    id:"124",
-    title: 'Team D',
-    time:"4.00PM",
-    logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
-    date:"12th July 2020",
-    venue:"Colombo Futsal Club"
-  },
-  {
-    id:"131",
-    title: 'Team C',
-    time:"4.00PM",
-    logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
-    date:"07th July 2020",
-    venue:"Colombo Futsal Club"
-  },
-  {
-    id:"134",
-    title: 'Team D',
-    time:"4.00PM",
-    logo:'https://pluspng.com/img-png/chelsea-png-file-chelsea-fc-svg-600.png',
-    date:"12th July 2020",
-    venue:"Colombo Futsal Club"
-  },
+  
 ];
 
-export default class MyMatches extends React.Component {
+export default class Home extends React.Component {
   
 
   renderProducts = () => {
+    const { navigation } = this.props;
     return (
      
       <FlatList
            data={DATA}
            renderItem={({item})=>
-           <View style={styles.list}>
- 
+           <View style={styles.list }>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('ViewTeam')}>
            <Image source = {{uri:item.logo}} style={styles.imageView} />
           <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
               <Text size={16}>{item.title}</Text>
           </View>
-           
-           <View style={{flex:4, flexDirection: 'column', alignItems:"flex-end",justifyContent:"center", paddingRight:20}}>
-           <Text>{item.time}</Text>
-           <Text >{item.date}</Text>
-           <Text>{item.venue}</Text>
-           </View>
+           </TouchableOpacity>
            
 
          </View>
@@ -92,18 +67,25 @@ export default class MyMatches extends React.Component {
   }
 
   render() {
-    const {navigation} = this.props;
+    const { navigation } = this.props;
     return (
+      
       <Block flex style={styles.home}>
+        <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
+          <Text style={{fontSize:30, color:"white"}}>Teams</Text>
+        </View>
+
+        
+        {/* <View style={{padding:20}}></View> */}
         {this.renderProducts()}
+
         <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={()=>navigation.navigate('New Match')}
-          style={styles.TouchableOpacityStyle}>
-          <Icon name="plus-circle" family="material-community" size={55}
-          color="#3BAD36" backgroundColor="#fff"
-          />
+                onPress={() => navigation.navigate('CreateTeam')}>
+        <View style={{padding:20,flexDirection:"row", justifyContent:"flex-end"}}>
+          <AntDesign name="pluscircle" size={50} color="#32cd32" />
+        </View>
         </TouchableOpacity>
+        
       </Block>
     );
   }
@@ -168,28 +150,13 @@ const styles = StyleSheet.create({
     borderBottomWidth:10,
     borderBottomColor:Theme.COLORS.BORDER_COLOR,
     paddingVertical:10,
+    borderRadius:20
   },
   imageView: {
     width: width/5,
     height: width/5 ,
     margin: 7,
     borderRadius : 7,
-},
-TouchableOpacityStyle: {
-  //Here is the trick
-  position: 'absolute',
-  width: 50,
-  height: 50,
-  alignItems: 'center',
-  justifyContent: 'center',
-  right: 35,
-  bottom: 35,
-},
-FloatingButtonStyle: {
-  resizeMode: 'contain',
-  width: 50,
-  height: 50,
-  //backgroundColor:'black'
 },
 
 });
