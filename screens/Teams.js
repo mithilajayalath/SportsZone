@@ -10,7 +10,7 @@ const { width } = Dimensions.get('screen');
 
 const DATA =[
   {
-    id:123,
+    id:"123",
     title: 'Home Team',
     time:"4.00PM",
     logo:'https://pluspng.com/img-png/manchester-united-png-manchester-united-logo-png-809.png',
@@ -18,7 +18,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:122,
+    id:"122",
     title: 'University Team',
     time:"6.30PM",
     logo:'https://pluspng.com/img-png/manchester-city-fc-png-manchester-city-fc-png-1024.png',
@@ -26,7 +26,7 @@ const DATA =[
     venue:"Colombo Futsal Club"
   },
   {
-    id:121,
+    id:"121",
     title: 'Negombo Club',
     time:"4.00PM",
     logo:'https://www.freepnglogos.com/uploads/arsenal-logo-png/arsenal-logo-symbol-arsenal-stl-model-grb-stl-arsenal-21.png',
@@ -48,7 +48,7 @@ export default class Home extends React.Component {
            renderItem={({item})=>
            <View style={styles.list }>
             <TouchableOpacity
-                onPress={() => navigation.navigate('ViewTeam')}>
+                onPress={() => navigation.navigate('View Team')}>
            <Image source = {{uri:item.logo}} style={styles.imageView} />
           <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
               <Text size={16}>{item.title}</Text>
@@ -80,7 +80,7 @@ export default class Home extends React.Component {
         {this.renderProducts()}
 
         <TouchableOpacity
-                onPress={() => navigation.navigate('CreateTeam')}>
+                onPress={() => navigation.navigate('Create Team')}>
         <View style={{padding:20,flexDirection:"row", justifyContent:"flex-end"}}>
           <AntDesign name="pluscircle" size={50} color="#32cd32" />
         </View>
