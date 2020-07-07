@@ -111,13 +111,6 @@ registerUser = () => {
     return (
       <KeyboardAvoidingView behavior="padding" enabled style={styles.container}>
         <StatusBar barStyle="light-content" />
-        {/* <Block flex center>
-<ImageBackground
-source={{ uri: Images.Onboarding }}
-style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
-/>
-</Block> */}
-        {/* <Block flex space="between" style={styles.padded}> */}
 
         <Block row flex space="around" style={{ zIndex: 1 }}>
           <Block flex center>
@@ -133,11 +126,12 @@ style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
                 onBlur={() => this.empty_mobile_number_validator()}
               />
               <Text style={{ color: 'red', marginLeft: 20 }}>{this.state.error_mobile_number}</Text>
-              <Input placeholder="Name" placeholderTextColor="white" minLenght={3} color="white" style={styles.input}
+              <Input placeholder="Email" placeholderTextColor="white" minLenght={3} color="white" style={styles.input}
                 //onChange = {(Value)=> this.setState({username : Value})}
                 value={this.state.username}
                 onChangeText={(val) => this.updateInputVal(val, 'username')}
                 onBlur={() => this.empty_username_validator()}
+                autoCapitalize='none'
               />
               <Text style={{ color: 'red', marginLeft: 20 }}>{this.state.error_username}</Text>
               <Input placeholder="Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
@@ -145,12 +139,14 @@ style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
                 value={this.state.password}
                 onChangeText={(val) => this.updateInputVal(val, 'password')}
                 onBlur={() => this.empty_password_validator()}
+                secureTextEntry={true}
               />
               <Text style={{ color: 'red', marginLeft: 20 }}>{this.state.error_password}</Text>
               <Input placeholder="Confirm Password" password viewPass placeholderTextColor="white" minLenght={6} color="white" iconColor="white" style={styles.input}
                 //onChange = {(Value)=> this.setState({confirm_password : Value})}
                 value={this.state.confirm_password}
                 onChangeText={(val) => this.updateInputVal(val, 'confirm_password')}
+                secureTextEntry={true}
               //onBlur = {()=>this.empty_confirm_password_validator()}
               //onBlur = {()=>this.password_validator()}
               />
