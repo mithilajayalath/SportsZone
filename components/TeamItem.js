@@ -32,8 +32,8 @@ const TeamItem = props => {
                             <Button
                                 shadowless
                                 style={styles.button}
-                                color={materialTheme.COLORS.BUTTON_COLOR}
-
+                                color={materialTheme.COLORS.SUCCESS}
+                               // color='lightgreen'
                                 onPress={props.onRequest}
                               
                             >Request</Button>
