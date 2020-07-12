@@ -25,8 +25,9 @@ import CourtsScreen from '../screens/CourtList';
 // New login and signup routes
 import LoginScreen from '../screens/LoginPlayer';
 import SignupScreen from '../screens/SignupPlayer';
+import CourtProfile from '../screens/CourtProfile';
 
-import {Icon} from 'galio-framework'
+import {Icon} from 'galio-framework';
 
 import CustomDrawerContent from './Menu';
 import { Header } from '../components';
@@ -226,6 +227,13 @@ function CourtsStack(props) {
           headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
         }}
       />
+      <Stack.Screen
+          name="CourtProfile"
+          component={CourtProfile}
+           options={
+              ({ route }) => ({ title: route.params.title, headerTitleAlign:"center" })
+            }
+       />
     </Stack.Navigator>
   );
 }
