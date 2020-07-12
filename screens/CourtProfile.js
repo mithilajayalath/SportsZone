@@ -5,7 +5,7 @@ import { Button, Block, Text, Input, theme } from 'galio-framework';
 import { Icon, Product } from '../components/';
 import Theme from '../constants/Theme';
 
-import { SearchBar } from 'react-native-elements';
+
 
 const { width } = Dimensions.get('screen');
 
@@ -54,22 +54,11 @@ const DATA =[
 
 export default class Home extends React.Component {
 
-  state = {
-      search: '',
-    };
-
-  courtPress(title){
-    const {navigation} = this.props;
-    console.log(title);
-    navigation.navigate('CourtProfile',{title: title});
+  courtPress(){
+    console.log("pressed")
   }
 
-  updateSearch = (search) => {
-      this.setState({ search });
-  };
-
   renderProducts = () => {
-    const {navigation} = this.props;
     return (
 
       <FlatList
@@ -78,10 +67,10 @@ export default class Home extends React.Component {
 
                <View style={styles.list}>
 
-                   <Image source = {{uri:item.logo}} style={styles.imageView} />
+                   //<Image source = {{uri:item.logo}} style={styles.imageView} />
 
                     <View style={{flex:2, flexDirection: 'column',justifyContent:"flex-start", alignItems:"flex-start"}}>
-                        <TouchableOpacity style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}} onPress={() => this.courtPress(item.title)}>
+                        <TouchableOpacity style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}} onPress={this.courtPress}>
                             <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
                                 <Text size={16} style={{fontWeight: "bold"}}>
                                     {item.title}
@@ -110,22 +99,16 @@ export default class Home extends React.Component {
 
   render() {
   const {navigation} = this.props;
-  const { search } = this.state;
+  const prof_name = this.props.route.params.title;
+
     return (
       <Block flex style={styles.home}>
-        {this.renderProducts()}
-        <SearchBar
-            round
-            lightTheme
-            placeholder="Search..."
-            containerStyle={{backgroundColor: theme.COLORS.TRANSPARENT}}
-            //inputStyle={{backgroundColor: 'white'}}
-            inputContainerStyle={{backgroundColor: theme.COLORS.WHITE}}
-            onChangeText={this.updateSearch}
-            //onClearText={someMethod}
-            value={search}
-         />
+        <Text>  Profile  </Text>
+        <Text> {prof_name} </Text>
+
+
       </Block>
+
     );
   }
 }
