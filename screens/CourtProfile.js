@@ -103,9 +103,9 @@ export default class Home extends React.Component {
 
     return (
       <Block flex style={styles.home}>
-        <Text>  Profile  </Text>
+        <Image source = {{uri:this.props.route.params.picture}} style={styles.imageViewHead}/>
         <Text> {prof_name} </Text>
-
+        <Text>  Profile  </Text>
 
       </Block>
 
@@ -189,6 +189,11 @@ const styles = StyleSheet.create({
      right: 35,
      bottom: 35,
    },
+   imageViewHead:{
+     width: width,
+     height: width/2,
+       alignSelf:"center"
+   }
 
 
 });

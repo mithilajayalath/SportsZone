@@ -7,3 +7,4 @@ yarn.lock
 *.key
 *.mobileprovision
 .DS_Store
+package-lock.json

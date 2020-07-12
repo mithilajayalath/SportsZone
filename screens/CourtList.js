@@ -58,10 +58,14 @@ export default class Home extends React.Component {
       search: '',
     };
 
-  courtPress(title){
+  courtPress(id_num){
     const {navigation} = this.props;
+    const title = DATA.filter(x => x.id === id_num)[0].title;
+    const logo = DATA.filter(x => x.id === id_num)[0].logo;
+    //const title = court.title;
+    //const logo = court.logo
     console.log(title);
-    navigation.navigate('CourtProfile',{title: title});
+    navigation.navigate('CourtProfile',{title: title, picture: logo});
   }
 
   updateSearch = (search) => {
@@ -81,7 +85,7 @@ export default class Home extends React.Component {
                    <Image source = {{uri:item.logo}} style={styles.imageView} />
 
                     <View style={{flex:2, flexDirection: 'column',justifyContent:"flex-start", alignItems:"flex-start"}}>
-                        <TouchableOpacity style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}} onPress={() => this.courtPress(item.title)}>
+                        <TouchableOpacity style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}} onPress={() => this.courtPress(item.id)}>
                             <View style={{flex:2, flexDirection: 'column',justifyContent:"center", alignItems:"center"}}>
                                 <Text size={16} style={{fontWeight: "bold"}}>
                                     {item.title}
