@@ -125,15 +125,15 @@ export default class SignupPlayer extends React.Component {
           <Block row flex space="around" style={{ zIndex: 1 }}>
             <Block flex center>
               <Block>
-                <Text color="white" size={60}>SignUp</Text>
+                <Text color="black" size={60}>SignUp</Text>
               </Block>
               <Block>
                 <Input placeholder="Mobile Number" 
                       minLenght={10} 
                       maxLength={10} 
-                      placeholderTextColor="white" 
+                      placeholderTextColor="black" 
                       type="number-pad" 
-                      color="white" 
+                      color="black" 
                       style={styles.input}
                       value={this.state.mobile_number}
                       onChangeText={(val) => this.updateInputVal(val, 'mobile_number')}
@@ -142,8 +142,8 @@ export default class SignupPlayer extends React.Component {
                 <Text style={{ color: 'red', marginLeft: 20 }}>{this.state.error_mobile_number}</Text>
 
                 <Input placeholder="Email" 
-                  placeholderTextColor="white" 
-                  minLenght={3} color="white" 
+                  placeholderTextColor="black" 
+                  minLenght={3} color="black" 
                   style={styles.input}
                   value={this.state.username}
                   onChangeText={(val) => this.updateInputVal(val, 'username')}
@@ -155,9 +155,9 @@ export default class SignupPlayer extends React.Component {
                 <Input placeholder="Password" 
                   password 
                   viewPass 
-                  placeholderTextColor="white" 
-                  minLenght={6} color="white" 
-                  iconColor="white" 
+                  placeholderTextColor="black" 
+                  minLenght={6} color="black" 
+                  iconColor="black" 
                   style={styles.input}
                   value={this.state.password}
                   onChangeText={(val) => this.updateInputVal(val, 'password')}
@@ -169,9 +169,9 @@ export default class SignupPlayer extends React.Component {
               <Input placeholder="Confirm Password" 
                 password 
                 viewPass 
-                placeholderTextColor="white" 
-                minLenght={6} color="white" 
-                iconColor="white" 
+                placeholderTextColor="black" 
+                minLenght={6} color="black" 
+                iconColor="black" 
                 style={styles.input}              
                 value={this.state.confirm_password}
                 onChangeText={(val) => this.updateInputVal(val, 'confirm_password')}
@@ -186,7 +186,7 @@ export default class SignupPlayer extends React.Component {
             <Button
               shadowless
               style={styles.button}
-              color={materialTheme.COLORS.BUTTON_COLOR}
+              color={materialTheme.COLORS.GREEN}
               // onPress={() => this.validate_feild()}
               onPress={() => this.handleSignUp()}
             //onPress={console.log("in button click")}
@@ -196,10 +196,10 @@ export default class SignupPlayer extends React.Component {
             </Button>
 
             <Block row>
-              <Text color="white"> Do you already have an account?</Text>
+              <Text color="black"> Do you already have an account? </Text>
               <TouchableOpacity
                 onPress={() => navigation.navigate('Login')}>
-                <Text color="#9C26B0" style={{ fontWeight: "bold" }}>Login</Text>
+                <Text color={materialTheme.COLORS.GREEN} style={{ fontWeight: "bold" }}>Login</Text>
               </TouchableOpacity>
             </Block>
           </Block>
@@ -212,7 +212,7 @@ export default class SignupPlayer extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme.COLORS.BLACK,
+    backgroundColor: "#fff",
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 1,
@@ -233,9 +233,9 @@ const styles = StyleSheet.create({
   input: {
     width: width - theme.SIZES.BASE * 4,
     height: theme.SIZES.BASE * 3,
-    borderColor: "black",
-    borderBottomColor: "white",
-    backgroundColor: "black"
+    borderColor: "white",
+    borderBottomColor: "black",
+    backgroundColor: "white"
   },
 });
 

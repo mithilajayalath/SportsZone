@@ -96,9 +96,9 @@ export default class Home extends React.Component {
       
       <Block flex style={styles.home}>
         
-        <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
+        {/* <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
           <Text style={{fontSize:30, color:"white"}}>Players</Text>
-        </View>
+        </View> */}
         
         
 

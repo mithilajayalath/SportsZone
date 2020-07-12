@@ -21,6 +21,7 @@ import SettingsScreen from '../screens/Settings';
 import MyMatchesScreen from '../screens/MyMatches';
 import MatchRequestsScreen from '../screens/MatchRequests';
 import OpenChallengesScreen from '../screens/OpenChallenge';
+import CourtsScreen from '../screens/CourtList';
 // New login and signup routes
 import LoginScreen from '../screens/LoginPlayer';
 import SignupScreen from '../screens/SignupPlayer';
@@ -47,54 +48,57 @@ const profile = {
 };
 
 function ProfileStack(props) {
+  const {navigation} = props;
   return (
     <Stack.Navigator initialRouteName="Profile" mode="card" headerMode="screen">
       <Stack.Screen
         name="Profile"
         component={ProfileScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header
-        //       white
-        //       transparent
-        //       title="Profile"
-        //       scene={scene}
-        //       navigation={navigation}
-        //     />
-        //   ),
-        //   headerTransparent: true
-        // }}
+        options={{
+          headerTitle:"Profile",
+          headerTitleAlign:"center",
+          headerRight:()=>(
+          <TouchableOpacity onPress={()=>navigation.navigate("Login")}>
+          <Icon name="power" family="material-community" size={30} style={{paddingRight:10,}}/>
+          </TouchableOpacity>),
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
     </Stack.Navigator>
   );
 }
 
-function TeamStack(props) {
+function TeamsStack(props) {
+
   return (
     <Stack.Navigator initialRouteName="Team" mode="card" headerMode="screen">
       <Stack.Screen
         name="Team"
         component={TeamScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header
-        //       white
-        //       transparent
-        //       title="Team"
-        //       scene={scene}
-        //       navigation={navigation}
-        //     />
-        //   ),
-        //   headerTransparent: false
-        // }}
+        options={{
+          headerTitle:"Teams",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="View Team"
         component={ViewTeamScreen}
+        options={{
+          headerTitle:"Players",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="Create Team"
         component={CreateTeamScreen}
+        options={{
+          headerTitle:"Create New Teams",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+          
+        }}
       />
     </Stack.Navigator>
   );
@@ -195,17 +199,6 @@ function NewMtachStack(props) {
   );
 }
 
-
-
-
-
-
-
-
-
-
-
-
 function ComponentsStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
@@ -221,48 +214,54 @@ function ComponentsStack(props) {
     </Stack.Navigator>
   );
 }
-function MatchesStack(props) {
+function CourtsStack(props) {
   return (
     <Stack.Navigator mode="card" headerMode="screen">
       <Stack.Screen
+        name="Courts"
+        component={CourtsScreen}
+        options={{
+          headerTitle:"Courts",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+
+
+function MatchesStack(props) {
+  return (
+    <Stack.Navigator mode="card" headerMode="screen" 
+    options={{
+      headerTitleAlign:"center"
+    }}>
+      <Stack.Screen
         name="My Matches"
         component={MatchesTab}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header title="My Matches" scene={scene} navigation={navigation} />
-        //   ),
-        //   headerRight: ()=>(
-        //     <TouchableOpacity>
-        //      <Icon
-        //       name='close'
-        //       family='Galio'
-        //       size={16}
-        //     />  
-        //   </TouchableOpacity>
-        //   )
-        // }}
+        options={{
+          headerTitle:"My Matches",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="New Match"
         component={NewMatchStartScreen}
-        // options={{
-        //   header: ({ navigation }) => (
-        //     <Header 
-        //     title="NewMatch"
-        //     navigation={navigation}
-        //     transparent
-            
-        //      />
-        //   ),
-        // }}
+        options={{
+          headerTitle:"New Match",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen
         name="NewMatchSelectTeam"
         component={NewMatchSelectTeam}
         options={{
-          header: ({ navigation }) => (
-            <Header back title="NewMatch"  navigation={navigation} />
-          )
+          headerTitle:"Select team",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
         }}
       />
     </Stack.Navigator>
@@ -293,15 +292,11 @@ function HomeStack(props) {
       <Stack.Screen 
         name="Home"
         component={HomeScreen}
-        // options={{
-        //   header: ({ navigation, scene }) => (
-        //     <Header 
-        //       title="Home"
-        //       navigation={navigation}
-        //       scene={scene}
-        //     />
-        //   )
-        // }}
+        options={{
+          headerTitle:"Home",
+          headerTitleAlign:"center",
+          headerStyle:{backgroundColor:materialTheme.COLORS.GREEN}
+        }}
       />
       <Stack.Screen 
         name="Pro"
@@ -325,30 +320,6 @@ function HomeStack(props) {
   );
 }
 
-function TeamsStack(props) {
-  return (
-    <Stack.Navigator mode="card" headerMode="screen">
-      <Stack.Screen
-        name="Teams"
-        component={TeamsTab}
-        options={{
-          header: ({ navigation, scene }) => (
-            <Header title="Teams" scene={scene} navigation={navigation} />
-          ),
-          headerRight: ()=>(
-            <TouchableOpacity>
-             <Icon
-              name='close'
-              family='Galio'
-              size={16}
-            />  
-          </TouchableOpacity>
-          )
-        }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 
 function AppStack(props) {
@@ -378,7 +349,7 @@ function AppStack(props) {
       
     }}
       />
-      <Tab.Screen name="Find Court" component ={MatchesStack}
+      <Tab.Screen name="Find Court" component ={CourtsStack}
       options={{tabBarLabel: 'Courts',
       tabBarIcon: ({focused}) => <Icon name='soccer-field'
                               family='material-community'
@@ -386,7 +357,7 @@ function AppStack(props) {
                               color={focused ? "#3BAD36" : "#000"}/>,
     }}
       />
-      <Tab.Screen name="Teams" component ={TeamStack}
+      <Tab.Screen name="Teams" component ={TeamsStack}
       options={{tabBarLabel: 'Teams',
       tabBarIcon: ({focused}) => <Icon name='users'
                               family='font-awesome'

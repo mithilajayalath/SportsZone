@@ -71,9 +71,9 @@ export default class Home extends React.Component {
     return (
       
       <Block flex style={styles.home}>
-        <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
+        {/* <View style={{padding:20,flexDirection:"row",backgroundColor:"#32cd32", justifyContent:"center"}}>
           <Text style={{fontSize:30, color:"white"}}>Teams</Text>
-        </View>
+        </View> */}
 
         
         {/* <View style={{padding:20}}></View> */}
@@ -81,7 +81,7 @@ export default class Home extends React.Component {
 
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={()=>navigation.navigate('CreateTeam')}
+          onPress={()=>navigation.navigate('Create Team')}
           style={styles.TouchableOpacityStyle}>
           <Icon name="plus-circle" family="material-community" size={55}
           color="#3BAD36" backgroundColor="#fff"
